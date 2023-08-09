@@ -1,30 +1,38 @@
-import {useState} from 'react';
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {LocalizationProvider, StaticDatePicker} from "@mui/x-date-pickers";
+
 import {TableComponent} from "./table/Table.tsx";
+import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
+import {getDate} from "../../store/slices/calendarSlice.ts";
 
 export const CalendarPage = () => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+    const selectedDate = useAppSelector(state => state.selectedDate.selectedDate)
+    const selectedDateObject = selectedDate ? new Date(selectedDate) : null
+
+    const dispatch = useAppDispatch()
 
     const handleDateChange = (date: Date | null) => {
-        setSelectedDate(date);
+        dispatch(getDate(date ? date.toISOString() : null))
     };
+
+    console.log(selectedDateObject)
 
     return (
         <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDatePicker
-                    orientation="portrait"
-                    value={selectedDate}
+                    orientation="landscape"
+                    value={selectedDateObject}
                     onChange={handleDateChange}
                 />
             </LocalizationProvider>
 
-            {selectedDate && (
-                <div>
-                    <TableComponent selectedDate={selectedDate.toString()}/>
-                </div>
-            )}
+            {/*{selectedDateObject && (*/}
+            {/*    <div>*/}
+                    <TableComponent/>
+            {/*    </div>*/}
+            {/*)}*/}
         </div>
     );
 };
