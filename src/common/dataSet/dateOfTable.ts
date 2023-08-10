@@ -3,7 +3,7 @@ export type tableRowsArrayType = {
 }
 export const tableRowsArray: tableRowsArrayType[] = [
     {title: "Ф.И.О"},
-    {title: "Комиссионный/Стрелочный"},
+    {title: "Работы"},
     {title: "Станция/Перегон"},
     {title: "Действия"},
 ]

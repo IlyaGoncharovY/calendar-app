@@ -1,9 +1,8 @@
 import {FC} from "react";
-
 import {TableCell, TableRow} from "@mui/material";
 
-import {RowsType} from "../../../../store/slices/tableSlice.ts";
-import {GroupButton} from "../../../../common/commonComponents/GroupButton.tsx";
+import {RowsType} from "../../../../../store/slices/tableSlice.ts";
+import {GroupButton} from "../../../../../common/commonComponents/GroupButton.tsx";
 
 interface ITableItem {
     row: RowsType

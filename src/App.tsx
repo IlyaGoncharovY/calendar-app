@@ -1,10 +1,10 @@
 import './App.css'
-import {CalendarPage} from "./components/calendar/CalendarPage.tsx";
+import {AppContainer} from "./components/appContainer/AppContainer.tsx";
 
 function App() {
     return (
         <div>
-            <CalendarPage/>
+            <AppContainer/>
         </div>
     )
 }
