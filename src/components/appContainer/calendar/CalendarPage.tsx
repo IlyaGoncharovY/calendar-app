@@ -3,7 +3,7 @@ import {Button} from "@mui/material";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {LocalizationProvider, StaticDatePicker} from "@mui/x-date-pickers";
 
-import {TableComponent} from "./table/Table.tsx";
+import {TableComponent} from "./table/TableComponent.tsx";
 import {getDate} from "../../../store/slices/calendarSlice.ts";
 import {ModalWindow} from "../../../common/modalWindow/ModalWindow.tsx";
 import {useAppDispatch, useAppSelector} from "../../../store/config/hook.ts";
