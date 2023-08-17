@@ -1,12 +1,14 @@
 import {Action, configureStore, ThunkAction} from "@reduxjs/toolkit";
 
-import calendarReducer from "../slices/calendarSlice.ts"
 import tableReducer from "../slices/tableSlice.ts"
+import calendarReducer from "../slices/calendarSlice.ts"
+import dateForUsersReducer from "../slices/dateForUsersSlice.ts"
 
 export const store = configureStore({
     reducer: {
         selectedDate: calendarReducer,
-        tableDate: tableReducer
+        tableDate: tableReducer,
+        dateUsers: dateForUsersReducer
     }
 });
 
