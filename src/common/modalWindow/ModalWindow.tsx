@@ -1,7 +1,9 @@
-import {Box, Button, Modal, TextField, Typography} from "@mui/material";
 import {FC} from "react";
+import {Box, Button, Modal, TextField, Typography} from "@mui/material";
+
+import {GroupSelect} from "../commonComponents/GroupSelect.tsx";
+import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
 import {addRowsDataTC, RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
-import {useAppDispatch} from "../../store/config/hook.ts";
 
 const style = {
     position: 'absolute',
@@ -23,22 +25,22 @@ interface IModal {
 
 export const ModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => {
 
+    const selectedTask = useAppSelector(state => state.dateUsers.selectedTask)
+
     const dispatch = useAppDispatch()
 
     const handleClose = () => setOpen(false)
 
     const addNewRowHandler = () => {
         const nameInput = document.getElementById("name-input") as HTMLInputElement
-        const taskInput = document.getElementById("task-input") as HTMLInputElement
         const locationInput = document.getElementById("location-input") as HTMLInputElement
 
         const newRow: RowsTypeWithDate = {
             name: nameInput.value,
-            task: taskInput.value,
+            task: selectedTask,
             location: locationInput.value,
             date: selectedDateObject!.toISOString()
         }
-
         dispatch(addRowsDataTC(newRow))
         handleClose()
     }
@@ -56,7 +58,7 @@ export const ModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => 
                         <TextField id="name-input" label="Ф.И.О" variant="standard"/>
                     </Typography>
                     <Typography id="modal-modal-description2" sx={{mt: 2}}>
-                        <TextField id="task-input" label="Работы" variant="standard"/>
+                        <GroupSelect/>
                     </Typography>
                     <Typography id="modal-modal-" sx={{mt: 2}}>
                         <TextField id="location-input" label="Станция/Перегон" variant="standard"/>
