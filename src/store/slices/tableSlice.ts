@@ -28,10 +28,13 @@ const tableSlice = createSlice({
         },
         addRowsData: (state, action:PayloadAction<RowsTypeWithDate>) => {
             state.rows.push(action.payload)
+        },
+        removeRowsData: (state, action: PayloadAction<string>) => {
+            state.rows = state.rows.filter(row => row.date !== action.payload)
         }
     }
 })
-export const {addRowsData, getRowsData} = tableSlice.actions
+export const {addRowsData, getRowsData, removeRowsData} = tableSlice.actions
 
 export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
     async (dispatch) => {
@@ -43,5 +46,18 @@ export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
         } catch (e) {
             console.log({ e })
         }
-    };
+    }
+
+export const removeRowsDataTC = (dateId: string): AppThunk =>
+    async (dispatch) => {
+        try {
+            dispatch(removeRowsData(dateId)) // Remove from Redux state
+            const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
+            const newData = existingData.filter((row: RowsTypeWithDate) => row.date !== dateId)
+            localStorage.setItem("rowsData", JSON.stringify(newData))
+        } catch (e) {
+            console.log({ e })
+        }
+    }
+
 export default tableSlice.reducer
