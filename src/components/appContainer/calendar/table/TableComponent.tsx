@@ -1,10 +1,10 @@
 import {useEffect} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 
-import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
-import {tableRowsArray} from "../../../../common/dataSet/dateOfTable.ts";
-import {getRowsData} from "../../../../store/slices/tableSlice.ts";
 import {TableItem} from "./item/TableItem.tsx";
+import {getRowsData} from "../../../../store/slices/tableSlice.ts";
+import {tableRowsArray} from "../../../../common/dataSet/dateOfTable.ts";
+import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
 
 export const TableComponent = () => {
 
@@ -33,7 +33,7 @@ export const TableComponent = () => {
                         </TableHead>
                         <TableBody>
                             {filteredRows.map((row, index) => (
-                                <TableItem key={index} row={row}/>
+                                <TableItem key={index} row={row} dateId={row.date}/>
                             ))}
                         </TableBody>
                     </Table>
