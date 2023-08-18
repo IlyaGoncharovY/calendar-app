@@ -6,10 +6,10 @@ import {GroupButton} from "../../../../../common/commonComponents/GroupButton.ts
 
 interface ITableItem {
     row: RowsType
-    dateId: string
+    rowId: string
 }
 
-export const TableItem: FC<ITableItem> = ({row, dateId}) => {
+export const TableItem: FC<ITableItem> = ({row, rowId}) => {
     return (
         <TableRow
             key={row.name}
@@ -21,7 +21,7 @@ export const TableItem: FC<ITableItem> = ({row, dateId}) => {
             <TableCell align="right">{row.task}</TableCell>
             <TableCell align="right">{row.location}</TableCell>
             <TableCell align="right">
-                <GroupButton dateId={dateId}/>
+                <GroupButton rowId={rowId}/>
             </TableCell>
         </TableRow>
     );

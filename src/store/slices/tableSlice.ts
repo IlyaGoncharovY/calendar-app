@@ -8,6 +8,7 @@ export type RowsType = {
 }
 export interface RowsTypeWithDate extends RowsType {
     date: string
+    rowId: string
 }
 
 interface initialStateType {
@@ -30,7 +31,7 @@ const tableSlice = createSlice({
             state.rows.push(action.payload)
         },
         removeRowsData: (state, action: PayloadAction<string>) => {
-            state.rows = state.rows.filter(row => row.date !== action.payload)
+            state.rows = state.rows.filter(row => row.rowId !== action.payload)
         }
     }
 })
@@ -48,12 +49,12 @@ export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
         }
     }
 
-export const removeRowsDataTC = (dateId: string): AppThunk =>
+export const removeRowsDataTC = (rowId: string): AppThunk =>
     async (dispatch) => {
         try {
-            dispatch(removeRowsData(dateId)) // Remove from Redux state
+            dispatch(removeRowsData(rowId)) // Remove from Redux state
             const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
-            const newData = existingData.filter((row: RowsTypeWithDate) => row.date !== dateId)
+            const newData = existingData.filter((row: RowsTypeWithDate) => row.rowId !== rowId)
             localStorage.setItem("rowsData", JSON.stringify(newData))
         } catch (e) {
             console.log({ e })

@@ -4,6 +4,7 @@ import {Box, Button, Modal, TextField, Typography} from "@mui/material";
 import {GroupSelect} from "../commonComponents/GroupSelect.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
 import {addRowsDataTC, RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
+import {v1} from "uuid";
 
 const style = {
     position: 'absolute',
@@ -26,6 +27,7 @@ interface IModal {
 export const ModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => {
 
     const selectedTask = useAppSelector(state => state.dateUsers.selectedTask)
+    const rowId = v1()
 
     const dispatch = useAppDispatch()
 
@@ -39,7 +41,8 @@ export const ModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => 
             name: nameInput.value,
             task: selectedTask,
             location: locationInput.value,
-            date: selectedDateObject!.toISOString()
+            date: selectedDateObject!.toISOString(),
+            rowId: rowId
         }
         dispatch(addRowsDataTC(newRow))
         handleClose()
@@ -63,7 +66,7 @@ export const ModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => 
                     <Typography id="modal-modal-" sx={{mt: 2}}>
                         <TextField id="location-input" label="Станция/Перегон" variant="standard"/>
                     </Typography>
-                    <Button onClick={addNewRowHandler} sx={{mt: 2}}>Добавить</Button>
+                    <Button onClick={addNewRowHandler} disabled={false} sx={{mt: 2}}>Добавить</Button>
                 </Box>
             </Modal>
         </div>

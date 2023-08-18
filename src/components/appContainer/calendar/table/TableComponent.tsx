@@ -33,7 +33,7 @@ export const TableComponent = () => {
                         </TableHead>
                         <TableBody>
                             {filteredRows.map((row, index) => (
-                                <TableItem key={index} row={row} dateId={row.date}/>
+                                <TableItem key={index} row={row} rowId={row.rowId}/>
                             ))}
                         </TableBody>
                     </Table>
