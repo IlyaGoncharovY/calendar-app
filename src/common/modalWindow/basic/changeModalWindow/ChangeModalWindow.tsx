@@ -1,40 +1,49 @@
 import {FC} from "react";
-import {v1} from "uuid";
 import {Button, TextField, Typography} from "@mui/material";
 
 import {BasicModalWindow} from "../BasicModalWindow.tsx";
 import {GroupSelect} from "../../../commonComponents/GroupSelect.tsx";
 import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
-import {RowsTypeWithDate, addRowsDataTC} from "../../../../store/slices/tableSlice.ts";
+import {changeRowsDataTC, RowsTypeWithDate} from "../../../../store/slices/tableSlice.ts";
 
 interface IModal {
     open: boolean
     setOpen: (value: boolean) => void
-    selectedDateObject?: Date | null
+    selectedDateObject: Date | null
+    rowIdToChange: string
 }
 
-export const ChangeModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject}) => {
+export const ChangeModalWindow: FC<IModal> = ({
+                                                  open,
+                                                  setOpen,
+                                                  selectedDateObject,
+                                                  rowIdToChange
+                                              }) => {
 
+    const rows = useAppSelector((state) => state.tableDate.rows)
     const selectedTask = useAppSelector(state => state.dateUsers.selectedTask)
-    const rowId = v1()
 
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
-    const handleClose = () => setOpen(false)
+    const handleClose = () => setOpen(false);
 
-    const addNewRowHandler = () => {
+    const rowToChange = rows.find((row) => row.rowId === rowIdToChange)
+
+    const changeRowHandler = () => {
         const nameInput = document.getElementById("name-input") as HTMLInputElement
         const locationInput = document.getElementById("location-input") as HTMLInputElement
+        if (rowToChange) {
+            const updatedRow: RowsTypeWithDate = {
+                name: nameInput.value,
+                task: selectedTask,
+                location: locationInput.value,
+                date: selectedDateObject!.toISOString(),
+                rowId: rowIdToChange
+            }
 
-        const newRow: RowsTypeWithDate = {
-            name: nameInput.value,
-            task: selectedTask,
-            location: locationInput.value,
-            date: selectedDateObject!.toISOString(),
-            rowId: rowId
+            dispatch(changeRowsDataTC(updatedRow))
+            handleClose()
         }
-        dispatch(addRowsDataTC(newRow))
-        handleClose()
     }
 
     return (
@@ -50,7 +59,7 @@ export const ChangeModalWindow: FC<IModal> = ({open, setOpen, selectedDateObject
                 <Typography id="modal-modal-" sx={{mt: 2}}>
                     <TextField id="location-input" label="Станция/Перегон" variant="standard"/>
                 </Typography>
-                <Button onClick={addNewRowHandler} disabled={false} sx={{mt: 2}}>Изменить</Button>
+                <Button onClick={changeRowHandler} disabled={false} sx={{mt: 2}}>Изменить</Button>
             </BasicModalWindow>
         </div>
     );
