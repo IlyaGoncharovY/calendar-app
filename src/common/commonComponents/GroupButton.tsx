@@ -5,8 +5,7 @@ import {useModalWindow} from "../hooks/useModalWindow.ts";
 import {handleFileDownload} from "../utils/utilFileDownload.ts";
 import {removeRowsDataTC} from "../../store/slices/tableSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
-import {ChangeModalWindow} from "../modalWindow/basic/changeModalWindow/ChangeModalWindow.tsx";
-
+import {ModalActionWindow} from "../modalWindow/basic/modalAction/ModalActionWindow.tsx";
 
 interface IGroupButton {
     rowId: string
@@ -33,7 +32,7 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
                 <Button onClick={handleOpen}>Изменить</Button>
                 <Button onClick={() => removeClickHandler(rowId)}>Удалить</Button>
             </ButtonGroup>
-            <ChangeModalWindow open={open} setOpen={setOpen} rowIdToChange={rowId} selectedDateObject={selectedDateObject}/>
+            <ModalActionWindow open={open} setOpen={setOpen} rowIdToChange={rowId} selectedDateObject={selectedDateObject}/>
         </>
     );
 };

@@ -6,8 +6,7 @@ import {TableComponent} from "./table/TableComponent.tsx";
 import {getDate} from "../../../store/slices/calendarSlice.ts";
 import {useModalWindow} from "../../../common/hooks/useModalWindow.ts";
 import {useAppDispatch, useAppSelector} from "../../../store/config/hook.ts";
-import {AddModalWindow} from "../../../common/modalWindow/basic/addModalWindow/AddModalWindow.tsx";
-
+import {ModalActionWindow} from "../../../common/modalWindow/basic/modalAction/ModalActionWindow.tsx";
 
 export const CalendarPage = () => {
 
@@ -33,7 +32,7 @@ export const CalendarPage = () => {
             </LocalizationProvider>
             {selectedDateObject && <Button onClick={handleOpen}>Добавить событие</Button>}
             <TableComponent/>
-            <AddModalWindow open={open} setOpen={setOpen} selectedDateObject={selectedDateObject}/>
+            <ModalActionWindow open={open} setOpen={setOpen} selectedDateObject={selectedDateObject}/>
         </div>
     );
 };
