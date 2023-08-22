@@ -6,6 +6,7 @@ export type RowsType = {
     task: string,
     location: string,
 }
+
 export interface RowsTypeWithDate extends RowsType {
     date: string
     rowId: string
@@ -24,18 +25,32 @@ const tableSlice = createSlice({
     initialState,
     reducers: {
         getRowsData: (state) => {
-            const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
-            state.rows = existingData
+            state.rows = JSON.parse(localStorage.getItem("rowsData") || "[]")
         },
-        addRowsData: (state, action:PayloadAction<RowsTypeWithDate>) => {
+        addRowsData: (state, action: PayloadAction<RowsTypeWithDate>) => {
             state.rows.push(action.payload)
+        },
+        changeRowsData: (state, action: PayloadAction<RowsTypeWithDate>) => {
+            const {rowId, ...updatedData} = action.payload
+            const rowIndex = state.rows.findIndex(row => row.rowId === rowId)
+            if (rowIndex !== -1) {
+                state.rows[rowIndex] = {
+                    ...state.rows[rowIndex],
+                    ...updatedData
+                }
+            }
         },
         removeRowsData: (state, action: PayloadAction<string>) => {
             state.rows = state.rows.filter(row => row.rowId !== action.payload)
         }
     }
 })
-export const {addRowsData, getRowsData, removeRowsData} = tableSlice.actions
+export const {
+    addRowsData,
+    getRowsData,
+    removeRowsData,
+    changeRowsData
+} = tableSlice.actions
 
 export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
     async (dispatch) => {
@@ -45,19 +60,30 @@ export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
             const newData = [...existingData, newRow]
             localStorage.setItem("rowsData", JSON.stringify(newData))
         } catch (e) {
-            console.log({ e })
+            console.log({e})
+        }
+    }
+
+export const changeRowsDataTC = (updateRow: RowsTypeWithDate): AppThunk =>
+    async (dispatch, getState) => {
+        try {
+            dispatch(changeRowsData(updateRow))
+            const updatedRows = getState().tableDate.rows
+            localStorage.setItem("rowsData", JSON.stringify(updatedRows))
+        } catch (e) {
+            console.log({e})
         }
     }
 
 export const removeRowsDataTC = (rowId: string): AppThunk =>
     async (dispatch) => {
         try {
-            dispatch(removeRowsData(rowId)) // Remove from Redux state
+            dispatch(removeRowsData(rowId))
             const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
             const newData = existingData.filter((row: RowsTypeWithDate) => row.rowId !== rowId)
             localStorage.setItem("rowsData", JSON.stringify(newData))
         } catch (e) {
-            console.log({ e })
+            console.log({e})
         }
     }
 
