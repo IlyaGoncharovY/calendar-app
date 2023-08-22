@@ -15,6 +15,15 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
 
     const filteredRows = rows.filter(el => el.rowId === rowId)
 
+    function formatDate(isoDate: string) {
+        const dateObj = new Date(isoDate)
+        dateObj.setDate(dateObj.getDate() + 1)
+        const day = dateObj.getUTCDate().toString().padStart(2, '0')
+        const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, '0')
+        const year = dateObj.getUTCFullYear()
+        return `${day}.${month}.${year}`
+    }
+
     const dateForDocument = {
         name: filteredRows[0].name,
         hasKomiss: filteredRows[0].task === WORKS.komiss,
@@ -23,7 +32,7 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
         hasRabochka: filteredRows[0].task === WORKS.rabochka,
         task: filteredRows[0].task,
         location: filteredRows[0].location,
-        date: filteredRows[0].date,
+        date: formatDate(filteredRows[0].date),
     }
 
     const docxFileUrl = "../../../public/files/raport.docx"
