@@ -15,6 +15,8 @@ interface IGroupButton {
 export const GroupButton: FC<IGroupButton> = ({rowId}) => {
 
     const rows = useAppSelector(state => state.tableDate.rows)
+    const selectedDate = useAppSelector(state => state.selectedDate.selectedDate)
+    const selectedDateObject = selectedDate ? new Date(selectedDate) : null
 
     const {open, setOpen, handleOpen} = useModalWindow()
 
@@ -31,7 +33,7 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
                 <Button onClick={handleOpen}>Изменить</Button>
                 <Button onClick={() => removeClickHandler(rowId)}>Удалить</Button>
             </ButtonGroup>
-            <ChangeModalWindow open={open} setOpen={setOpen}/>
+            <ChangeModalWindow open={open} setOpen={setOpen} rowIdToChange={rowId} selectedDateObject={selectedDateObject}/>
         </>
     );
 };
