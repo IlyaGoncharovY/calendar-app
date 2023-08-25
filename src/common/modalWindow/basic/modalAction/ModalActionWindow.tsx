@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {v1} from "uuid";
+import {Dayjs} from "dayjs";
 import {Button, TextField, Typography} from "@mui/material";
 
 import {BasicModalWindow} from "../BasicModalWindow.tsx";
@@ -7,10 +8,11 @@ import {GroupSelect} from "../../../commonComponents/GroupSelect.tsx";
 import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
 import {addRowsDataTC, changeRowsDataTC, RowsTypeWithDate} from "../../../../store/slices/tableSlice.ts";
 
+
 interface IModalActionWindow {
     open: boolean
     setOpen: (value: boolean) => void
-    selectedDateObject: Date | null
+    selectedDateObject: Dayjs | null
     rowIdToChange?: string
 }
 
