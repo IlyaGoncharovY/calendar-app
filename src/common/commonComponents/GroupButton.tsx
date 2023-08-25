@@ -1,4 +1,5 @@
 import {FC} from "react";
+import dayjs from "dayjs";
 import {Button, ButtonGroup} from "@mui/material";
 
 import {useModalWindow} from "../hooks/useModalWindow.ts";
@@ -15,7 +16,7 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
 
     const rows = useAppSelector(state => state.tableDate.rows)
     const selectedDate = useAppSelector(state => state.selectedDate.selectedDate)
-    const selectedDateObject = selectedDate ? new Date(selectedDate) : null
+    const selectedDateObject = selectedDate ? dayjs(selectedDate) : null
 
     const {open, setOpen, handleOpen} = useModalWindow()
 
