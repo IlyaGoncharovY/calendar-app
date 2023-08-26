@@ -22,22 +22,30 @@ export const TableComponent = () => {
     }, [dispatch])
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{minWidth: 650}} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        {tableRowsArray.map((tableRow, index) =>
-                            <TableCell align="right" key={index}>{tableRow.title}</TableCell>
-                        )}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {filteredRows.map((row, index) => (
-                        <TableItem key={index} row={row} rowId={row.rowId}/>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <Paper sx={{width: '100%'}}>
+            <TableContainer sx={{maxHeight: 320}}>
+                <Table sx={{minWidth: 650}} stickyHeader aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            {tableRowsArray.map((tableRow) =>
+                                <TableCell
+                                    key={tableRow.id}
+                                    align={tableRow.align}
+                                    style={{minWidth: tableRow.width}}
+                                >
+                                    {tableRow.title}
+                                </TableCell>
+                            )}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredRows.map((row) => (
+                            <TableItem key={row.rowId} row={row} rowId={row.rowId}/>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
     );
 };
 
