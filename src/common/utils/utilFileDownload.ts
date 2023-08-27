@@ -2,7 +2,9 @@ import * as PizZip from "pizzip";
 import {saveAs} from "file-saver";
 import Docxtemplater from "docxtemplater";
 
+import {AppDispatch} from "../../store/config/store.ts";
 import {RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
+import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts";
 
 const WORKS = {
     komiss: "Комиссионный",
@@ -11,7 +13,7 @@ const WORKS = {
     rabochka: "Рабочая комиссия"
 }
 
-export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]) => {
+export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[], dispatch: AppDispatch) => {
 
     const filteredRows = rows.filter(el => el.rowId === rowId)
 
@@ -58,6 +60,8 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
 
         saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
     } catch (error) {
-        console.log('Error: ' + error);
+        const e = error as TemplateBaseType
+        dispatch(setErrorTemplate(e))
+        // console.log('Error: ' + error);
     }
 }

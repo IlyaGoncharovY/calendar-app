@@ -29,7 +29,7 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
     return (
         <>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button onClick={() => handleFileDownload(rowId, rows)}>Печать</Button>
+                <Button onClick={() => handleFileDownload(rowId, rows, dispatch)}>Печать</Button>
                 <Button onClick={handleOpen}>Изменить</Button>
                 <Button onClick={() => removeClickHandler(rowId)}>Удалить</Button>
             </ButtonGroup>
