@@ -1,5 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
 import {AppThunk} from "../config/store.ts";
+import {setError, setLoading} from "./appSlice.ts";
 
 export type RowsType = {
     name: string,
@@ -54,36 +56,45 @@ export const {
 
 export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
     async (dispatch) => {
+        dispatch(setLoading(true))
         try {
             dispatch(addRowsData(newRow))
             const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
             const newData = [...existingData, newRow]
             localStorage.setItem("rowsData", JSON.stringify(newData))
+            dispatch(setLoading(false))
         } catch (e) {
-            console.log({e})
+            const error = e as string
+            dispatch(setError(error))
         }
     }
 
 export const changeRowsDataTC = (updateRow: RowsTypeWithDate): AppThunk =>
     async (dispatch, getState) => {
+        dispatch(setLoading(true))
         try {
             dispatch(changeRowsData(updateRow))
             const updatedRows = getState().tableDate.rows
             localStorage.setItem("rowsData", JSON.stringify(updatedRows))
+            dispatch(setLoading(false))
         } catch (e) {
-            console.log({e})
+            const error = e as string
+            dispatch(setError(error))
         }
     }
 
 export const removeRowsDataTC = (rowId: string): AppThunk =>
     async (dispatch) => {
+        dispatch(setLoading(true))
         try {
             dispatch(removeRowsData(rowId))
             const existingData = JSON.parse(localStorage.getItem("rowsData") || "[]")
             const newData = existingData.filter((row: RowsTypeWithDate) => row.rowId !== rowId)
             localStorage.setItem("rowsData", JSON.stringify(newData))
+            dispatch(setLoading(false))
         } catch (e) {
-            console.log({e})
+            const error = e as string
+            dispatch(setError(error))
         }
     }
 
