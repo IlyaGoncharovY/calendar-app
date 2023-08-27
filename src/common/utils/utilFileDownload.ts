@@ -6,6 +6,10 @@ import {AppDispatch} from "../../store/config/store.ts";
 import {RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
 import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import file from "../../../public/files/raport.docx"
+
 const WORKS = {
     komiss: "Комиссионный",
     strel: "Стрелочный",
@@ -37,10 +41,10 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
         date: formatDate(filteredRows[0].date),
     }
 
-    const docxFileUrl = "../../../public/files/raport.docx"
+    // const docxFileUrl = "../../../public/files/raport.docx"
 
     try {
-        const response = await fetch(docxFileUrl);
+        const response = await fetch(file);
         const data = await response.arrayBuffer();
 
         const zip = new PizZip(data);
