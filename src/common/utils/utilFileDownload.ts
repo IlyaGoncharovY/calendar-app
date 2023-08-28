@@ -66,6 +66,6 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
     } catch (error) {
         const e = error as TemplateBaseType
         dispatch(setErrorTemplate(e))
-        // console.log('Error: ' + error);
+        console.log('Error: ' + error);
     }
 }
