@@ -8,7 +8,7 @@ import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import file from "../../../public/files/raport.docx"
+import file from "../../assets/files/raport.docx"
 
 const WORKS = {
     komiss: "Комиссионный",
