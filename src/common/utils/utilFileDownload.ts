@@ -8,7 +8,7 @@ import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import file from "../../assets/files/raport.docx"
+import file from "../../assets/files/raport-7451dbf2.docx"
 
 const WORKS = {
     komiss: "Комиссионный",
@@ -41,7 +41,7 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
         date: formatDate(filteredRows[0].date),
     }
 
-    // const docxFileUrl = "../../../public/files/raport.docx"
+    // const docxFileUrl = "../../../public/files/raport-7451dbf2.docx"
 
     try {
         const response = await fetch(file);
@@ -62,7 +62,7 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
             compression: "DEFLATE"
         })
 
-        saveAs(generatedDoc, `raport-${filteredRows[0].task}.docx`);
+        saveAs(generatedDoc, `raport-${filteredRows[0].task}.docx`)
     } catch (error) {
         const e = error as TemplateBaseType
         dispatch(setErrorTemplate(e))
