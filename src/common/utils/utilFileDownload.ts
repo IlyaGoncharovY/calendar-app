@@ -62,7 +62,7 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
             compression: "DEFLATE"
         })
 
-        saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
+        saveAs(generatedDoc, `raport-${filteredRows[0].task}.docx`);
     } catch (error) {
         const e = error as TemplateBaseType
         dispatch(setErrorTemplate(e))
