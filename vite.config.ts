@@ -5,5 +5,16 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   base: "/calendar-app",
   plugins: [react()],
-  assetsInclude: ["**/*.docx"]
+  assetsInclude: ["**/*.docx"],
+  build: {
+    target: 'es6',
+    minify: false,
+    // rollupOptions: {
+    //   output: {
+    //     entryFileNames: `[name].js`,
+    //     chunkFileNames: `[name].js`,
+    //     assetFileNames: `[name].[ext]`,
+    //   }
+    // }
+  }
 })

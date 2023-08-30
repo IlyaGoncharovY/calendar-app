@@ -8,7 +8,7 @@ import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import file from "../../assets/files/raport-7451dbf2.docx"
+import file from "../../assets/files/raport.docx"
 
 const WORKS = {
     komiss: "Комиссионный",
@@ -41,12 +41,12 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
         date: formatDate(filteredRows[0].date),
     }
 
-    // const docxFileUrl = "../../../public/files/raport-7451dbf2.docx"
+    // const docxFileUrl = "../../../public/files/raport.docx"
 
     try {
         const response = await fetch(file);
         const data = await response.arrayBuffer();
-
+        console.log(new PizZip(data))
         const zip = new PizZip(data);
 
         const templateDoc = new Docxtemplater(zip, {
@@ -61,8 +61,9 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
             mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             compression: "DEFLATE"
         })
-
-        saveAs(generatedDoc, `raport-${filteredRows[0].task}.docx`)
+        console.log(generatedDoc);
+        
+        saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
     } catch (error) {
         const e = error as TemplateBaseType
         dispatch(setErrorTemplate(e))
