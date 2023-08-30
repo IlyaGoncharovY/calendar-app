@@ -1,6 +1,7 @@
-import * as PizZip from "pizzip";
+import PizZip from 'pizzip';
 import {saveAs} from "file-saver";
 import Docxtemplater from "docxtemplater";
+import PizZipUtils from 'pizzip/utils/index.js';
 
 import {AppDispatch} from "../../store/config/store.ts";
 import {RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
@@ -15,6 +16,10 @@ const WORKS = {
     strel: "Стрелочный",
     volnovod: "Волновод",
     rabochka: "Рабочая комиссия"
+}
+
+function loadFile(url: string, callback: (err: Error, data: string) => void) {
+    PizZipUtils.getBinaryContent(url, callback);
 }
 
 export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[], dispatch: AppDispatch) => {
@@ -44,29 +49,31 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
     // const docxFileUrl = "../../../public/files/raport.docx"
 
     try {
-        const response = await fetch(file);
-        const data = await response.arrayBuffer();
-        console.log(new PizZip(data))
-        const zip = new PizZip(data);
+        loadFile(file, function (error, content) {
+            if (error) {
+                throw error;
+            }
 
-        const templateDoc = new Docxtemplater(zip, {
-            paragraphLoop: true,
-            linebreaks: true
-        })
+            const zip = new PizZip(content);
 
-        templateDoc.render(dateForDocument);
+            const templateDoc = new Docxtemplater(zip, {
+                paragraphLoop: true,
+                linebreaks: true
+            });
 
-        const generatedDoc = templateDoc.getZip().generate({
-            type: "blob",
-            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            compression: "DEFLATE"
-        })
-        console.log(generatedDoc);
-        
-        saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
+            templateDoc.render(dateForDocument);
+
+            const generatedDoc = templateDoc.getZip().generate({
+                type: "blob",
+                mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                compression: "DEFLATE"
+            });
+
+            saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
+        });
     } catch (error) {
-        const e = error as TemplateBaseType
-        dispatch(setErrorTemplate(e))
+        const e = error as TemplateBaseType;
+        dispatch(setErrorTemplate(e));
         console.log('Error: ' + error);
     }
 }
