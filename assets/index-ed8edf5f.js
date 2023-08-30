@@ -55,7 +55,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 var require_index_001 = __commonJS({
-  "assets/index-90b9cf44.js"(exports) {
+  "assets/index-ed8edf5f.js"(exports) {
     function _mergeNamespaces(n2, m2) {
       for (var i2 = 0; i2 < m2.length; i2++) {
         const e2 = m2[i2];
@@ -27083,7 +27083,7 @@ var require_index_001 = __commonJS({
         }
       }
     }
-    var utils$c = {};
+    var utils$d = {};
     var compressions$1 = {};
     var flate = {};
     var pako_es5 = { exports: {} };
@@ -31524,14 +31524,14 @@ var require_index_001 = __commonJS({
         }
         return result;
       };
-    })(utils$c);
-    var utils$b = utils$c;
+    })(utils$d);
+    var utils$c = utils$d;
     var table = [0, 1996959894, 3993919788, 2567524794, 124634137, 1886057615, 3915621685, 2657392035, 249268274, 2044508324, 3772115230, 2547177864, 162941995, 2125561021, 3887607047, 2428444049, 498536548, 1789927666, 4089016648, 2227061214, 450548861, 1843258603, 4107580753, 2211677639, 325883990, 1684777152, 4251122042, 2321926636, 335633487, 1661365465, 4195302755, 2366115317, 997073096, 1281953886, 3579855332, 2724688242, 1006888145, 1258607687, 3524101629, 2768942443, 901097722, 1119000684, 3686517206, 2898065728, 853044451, 1172266101, 3705015759, 2882616665, 651767980, 1373503546, 3369554304, 3218104598, 565507253, 1454621731, 3485111705, 3099436303, 671266974, 1594198024, 3322730930, 2970347812, 795835527, 1483230225, 3244367275, 3060149565, 1994146192, 31158534, 2563907772, 4023717930, 1907459465, 112637215, 2680153253, 3904427059, 2013776290, 251722036, 2517215374, 3775830040, 2137656763, 141376813, 2439277719, 3865271297, 1802195444, 476864866, 2238001368, 4066508878, 1812370925, 453092731, 2181625025, 4111451223, 1706088902, 314042704, 2344532202, 4240017532, 1658658271, 366619977, 2362670323, 4224994405, 1303535960, 984961486, 2747007092, 3569037538, 1256170817, 1037604311, 2765210733, 3554079995, 1131014506, 879679996, 2909243462, 3663771856, 1141124467, 855842277, 2852801631, 3708648649, 1342533948, 654459306, 3188396048, 3373015174, 1466479909, 544179635, 3110523913, 3462522015, 1591671054, 702138776, 2966460450, 3352799412, 1504918807, 783551873, 3082640443, 3233442989, 3988292384, 2596254646, 62317068, 1957810842, 3939845945, 2647816111, 81470997, 1943803523, 3814918930, 2489596804, 225274430, 2053790376, 3826175755, 2466906013, 167816743, 2097651377, 4027552580, 2265490386, 503444072, 1762050814, 4150417245, 2154129355, 426522225, 1852507879, 4275313526, 2312317920, 282753626, 1742555852, 4189708143, 2394877945, 397917763, 1622183637, 3604390888, 2714866558, 953729732, 1340076626, 3518719985, 2797360999, 1068828381, 1219638859, 3624741850, 2936675148, 906185462, 1090812512, 3747672003, 2825379669, 829329135, 1181335161, 3412177804, 3160834842, 628085408, 1382605366, 3423369109, 3138078467, 570562233, 1426400815, 3317316542, 2998733608, 733239954, 1555261956, 3268935591, 3050360625, 752459403, 1541320221, 2607071920, 3965973030, 1969922972, 40735498, 2617837225, 3943577151, 1913087877, 83908371, 2512341634, 3803740692, 2075208622, 213261112, 2463272603, 3855990285, 2094854071, 198958881, 2262029012, 4057260610, 1759359992, 534414190, 2176718541, 4139329115, 1873836001, 414664567, 2282248934, 4279200368, 1711684554, 285281116, 2405801727, 4167216745, 1634467795, 376229701, 2685067896, 3608007406, 1308918612, 956543938, 2808555105, 3495958263, 1231636301, 1047427035, 2932959818, 3654703836, 1088359270, 936918e3, 2847714899, 3736837829, 1202900863, 817233897, 3183342108, 3401237130, 1404277552, 615818150, 3134207493, 3453421203, 1423857449, 601450431, 3009837614, 3294710456, 1567103746, 711928724, 3020668471, 3272380065, 1510334235, 755167117];
     var crc32 = function crc322(input, crc) {
       if (typeof input === "undefined" || !input.length) {
         return 0;
       }
-      var isArray = utils$b.getTypeOf(input) !== "string";
+      var isArray = utils$c.getTypeOf(input) !== "string";
       if (typeof crc == "undefined") {
         crc = 0;
       }
@@ -31592,7 +31592,7 @@ var require_index_001 = __commonJS({
     };
     var compressedObject = CompressedObject$2;
     var utf8$2 = {};
-    var utils$a = utils$c;
+    var utils$b = utils$d;
     var support$3 = support$4;
     var nodeBuffer$1 = nodeBufferExports;
     var _utf8len = new Array(256);
@@ -31704,7 +31704,7 @@ var require_index_001 = __commonJS({
           utf16buf.length = out2;
         }
       }
-      return utils$a.applyFromCharCode(utf16buf);
+      return utils$b.applyFromCharCode(utf16buf);
     }
     utf8$2.utf8encode = function utf8encode(str) {
       if (support$3.nodebuffer) {
@@ -31714,9 +31714,9 @@ var require_index_001 = __commonJS({
     };
     utf8$2.utf8decode = function utf8decode(buf) {
       if (support$3.nodebuffer) {
-        return utils$a.transformTo("nodebuffer", buf).toString("utf-8");
+        return utils$b.transformTo("nodebuffer", buf).toString("utf-8");
       }
-      buf = utils$a.transformTo(support$3.uint8array ? "uint8array" : "array", buf);
+      buf = utils$b.transformTo(support$3.uint8array ? "uint8array" : "array", buf);
       var result = [], len = buf.length, chunk = 65536;
       var k2 = 0;
       while (k2 < len) {
@@ -31730,7 +31730,7 @@ var require_index_001 = __commonJS({
       }
       return result.join("");
     };
-    var utils$9 = utils$c;
+    var utils$a = utils$d;
     function StringWriter$1() {
       this.data = [];
     }
@@ -31740,7 +31740,7 @@ var require_index_001 = __commonJS({
        * @param {Object} input the content to add.
        */
       append: function append2(input) {
-        input = utils$9.transformTo("string", input);
+        input = utils$a.transformTo("string", input);
         this.data.push(input);
       },
       /**
@@ -31752,7 +31752,7 @@ var require_index_001 = __commonJS({
       }
     };
     var stringWriter = StringWriter$1;
-    var utils$8 = utils$c;
+    var utils$9 = utils$d;
     function Uint8ArrayWriter$1(length2) {
       this.data = new Uint8Array(length2);
       this.index = 0;
@@ -31764,7 +31764,7 @@ var require_index_001 = __commonJS({
        */
       append: function append2(input) {
         if (input.length !== 0) {
-          input = utils$8.transformTo("uint8array", input);
+          input = utils$9.transformTo("uint8array", input);
           this.data.set(input, this.index);
           this.index += input.length;
         }
@@ -31779,7 +31779,7 @@ var require_index_001 = __commonJS({
     };
     var uint8ArrayWriter = Uint8ArrayWriter$1;
     var support$2 = support$4;
-    var utils$7 = utils$c;
+    var utils$8 = utils$d;
     var _crc = crc32;
     var signature = signature$1;
     var defaults$2 = defaults$3;
@@ -31795,7 +31795,7 @@ var require_index_001 = __commonJS({
         file2._data = file2._data.getContent();
         file2.options.binary = true;
         file2.options.base64 = false;
-        if (utils$7.getTypeOf(file2._data) === "uint8array") {
+        if (utils$8.getTypeOf(file2._data) === "uint8array") {
           var copy2 = file2._data;
           file2._data = new Uint8Array(copy2.length);
           if (copy2.length !== 0) {
@@ -31806,7 +31806,7 @@ var require_index_001 = __commonJS({
       return file2._data;
     }
     function getBinaryData(file2) {
-      var result = getRawData(file2), type = utils$7.getTypeOf(result);
+      var result = getRawData(file2), type = utils$8.getTypeOf(result);
       if (type === "string") {
         if (!file2.options.binary) {
           if (support$2.nodebuffer) {
@@ -31844,7 +31844,7 @@ var require_index_001 = __commonJS({
             continue;
           }
           file2 = this.files[filename];
-          fileClone = new ZipObject(file2.name, file2._data, utils$7.extend(file2.options));
+          fileClone = new ZipObject(file2.name, file2._data, utils$8.extend(file2.options));
           relativePath = filename.slice(this.root.length, filename.length);
           if (filename.slice(0, this.root.length) === this.root && // the file is in the current root
           search(relativePath, fileClone)) {
@@ -31864,7 +31864,7 @@ var require_index_001 = __commonJS({
        */
       file: function file2(name, data, o2) {
         if (arguments.length === 1) {
-          if (utils$7.isRegExp(name)) {
+          if (utils$8.isRegExp(name)) {
             var regexp = name;
             return this.filter(function(relativePath, file3) {
               return !file3.dir && regexp.test(relativePath);
@@ -31887,7 +31887,7 @@ var require_index_001 = __commonJS({
         if (!arg) {
           return this;
         }
-        if (utils$7.isRegExp(arg)) {
+        if (utils$8.isRegExp(arg)) {
           return this.filter(function(relativePath, file2) {
             return file2.dir && arg.test(relativePath);
           });
@@ -31933,7 +31933,7 @@ var require_index_001 = __commonJS({
        * @return {String|Uint8Array|ArrayBuffer|Buffer|Blob} the zip file
        */
       generate: function generate(options) {
-        options = utils$7.extend(options || {}, {
+        options = utils$8.extend(options || {}, {
           base64: true,
           compression: "STORE",
           compressionOptions: null,
@@ -31943,14 +31943,14 @@ var require_index_001 = __commonJS({
           mimeType: "application/zip",
           encodeFileName: utf8$1.utf8encode
         });
-        utils$7.checkSupport(options.type);
+        utils$8.checkSupport(options.type);
         if (options.platform === "darwin" || options.platform === "freebsd" || options.platform === "linux" || options.platform === "sunos") {
           options.platform = "UNIX";
         }
         if (options.platform === "win32") {
           options.platform = "DOS";
         }
-        var zipData = [], encodedComment = utils$7.transformTo("string", options.encodeFileName(options.comment || this.comment || ""));
+        var zipData = [], encodedComment = utils$8.transformTo("string", options.encodeFileName(options.comment || this.comment || ""));
         var localDirLength = 0, centralDirLength = 0, writer, i2;
         for (var name in this.files) {
           if (!this.files.hasOwnProperty(name)) {
@@ -31997,9 +31997,9 @@ var require_index_001 = __commonJS({
           case "uint8array":
           case "arraybuffer":
           case "nodebuffer":
-            return utils$7.transformTo(options.type.toLowerCase(), zip);
+            return utils$8.transformTo(options.type.toLowerCase(), zip);
           case "blob":
-            return utils$7.arrayBuffer2Blob(utils$7.transformTo("arraybuffer", zip), options.mimeType);
+            return utils$8.arrayBuffer2Blob(utils$8.transformTo("arraybuffer", zip), options.mimeType);
           case "base64":
             return options.base64 ? base64$2.encode(zip) : zip;
           default:
@@ -32018,7 +32018,7 @@ var require_index_001 = __commonJS({
        * This method will be removed in a future version without replacement.
        */
       utf8encode: function utf8encode(string) {
-        return utils$7.transformTo("string", utf8$1.utf8encode(string));
+        return utils$8.transformTo("string", utf8$1.utf8encode(string));
       },
       /**
        * @deprecated
@@ -32039,10 +32039,10 @@ var require_index_001 = __commonJS({
       if (asUTF8 && this.options.binary) {
         result = out.utf8decode(result);
       } else {
-        result = utils$7.transformTo("string", result);
+        result = utils$8.transformTo("string", result);
       }
       if (!asUTF8 && !this.options.binary) {
-        result = utils$7.transformTo("string", out.utf8encode(result));
+        result = utils$8.transformTo("string", out.utf8encode(result));
       }
       return result;
     }
@@ -32081,7 +32081,7 @@ var require_index_001 = __commonJS({
        */
       asNodeBuffer: function asNodeBuffer() {
         var result = getBinaryData(this);
-        return utils$7.transformTo("nodebuffer", result);
+        return utils$8.transformTo("nodebuffer", result);
       },
       /**
        * Returns the content as an Uint8Array.
@@ -32089,7 +32089,7 @@ var require_index_001 = __commonJS({
        */
       asUint8Array: function asUint8Array() {
         var result = getBinaryData(this);
-        return utils$7.transformTo("uint8array", result);
+        return utils$8.transformTo("uint8array", result);
       },
       /**
        * Returns the content as an ArrayBuffer.
@@ -32112,7 +32112,7 @@ var require_index_001 = __commonJS({
       if (o2.base64 === true && (o2.binary === null || o2.binary === void 0)) {
         o2.binary = true;
       }
-      o2 = utils$7.extend(o2, defaults$2);
+      o2 = utils$8.extend(o2, defaults$2);
       o2.date = o2.date || /* @__PURE__ */ new Date();
       if (o2.compression !== null) {
         o2.compression = o2.compression.toUpperCase();
@@ -32120,7 +32120,7 @@ var require_index_001 = __commonJS({
       return o2;
     }
     function fileAdd(name, data, o2) {
-      var dataType = utils$7.getTypeOf(data), parent;
+      var dataType = utils$8.getTypeOf(data), parent;
       o2 = prepareFileAttrs(o2);
       if (typeof o2.unixPermissions === "string") {
         o2.unixPermissions = parseInt(o2.unixPermissions, 8);
@@ -32145,7 +32145,7 @@ var require_index_001 = __commonJS({
       } else if (dataType === "string") {
         if (o2.binary && !o2.base64) {
           if (o2.optimizedBinaryString !== true) {
-            data = utils$7.string2binary(data);
+            data = utils$8.string2binary(data);
           }
         }
       } else {
@@ -32155,7 +32155,7 @@ var require_index_001 = __commonJS({
           throw new Error("The data of '" + name + "' is in an unsupported format !");
         }
         if (dataType === "arraybuffer") {
-          data = utils$7.transformTo("uint8array", data);
+          data = utils$8.transformTo("uint8array", data);
         }
       }
       var object2 = new ZipObject(name, data, o2);
@@ -32200,7 +32200,7 @@ var require_index_001 = __commonJS({
           result.compressedContent = file2._data.getCompressedContent();
         } else {
           content = file2._data.getContent();
-          result.compressedContent = compression.compress(utils$7.transformTo(compression.compressInputType, content), compressionOptions);
+          result.compressedContent = compression.compress(utils$8.transformTo(compression.compressInputType, content), compressionOptions);
         }
       } else {
         content = getBinaryData(file2);
@@ -32210,7 +32210,7 @@ var require_index_001 = __commonJS({
         }
         result.uncompressedSize = content.length;
         result.crc32 = _crc(content);
-        result.compressedContent = compression.compress(utils$7.transformTo(compression.compressInputType, content), compressionOptions);
+        result.compressedContent = compression.compress(utils$8.transformTo(compression.compressInputType, content), compressionOptions);
       }
       result.compressedSize = result.compressedContent.length;
       result.compressionMethod = compression.magic;
@@ -32227,7 +32227,7 @@ var require_index_001 = __commonJS({
       return (dosPermissions || 0) & 63;
     }
     function generateZipParts(name, file2, compressedObject2, offset, platform, encodeFileName) {
-      var useCustomEncoding = encodeFileName !== utf8$1.utf8encode, encodedFileName = utils$7.transformTo("string", encodeFileName(file2.name)), utfEncodedFileName = utils$7.transformTo("string", utf8$1.utf8encode(file2.name)), comment2 = file2.comment || "", encodedComment = utils$7.transformTo("string", encodeFileName(comment2)), utfEncodedComment = utils$7.transformTo("string", utf8$1.utf8encode(comment2)), useUTF8ForFileName = utfEncodedFileName.length !== file2.name.length, useUTF8ForComment = utfEncodedComment.length !== comment2.length, o2 = file2.options;
+      var useCustomEncoding = encodeFileName !== utf8$1.utf8encode, encodedFileName = utils$8.transformTo("string", encodeFileName(file2.name)), utfEncodedFileName = utils$8.transformTo("string", utf8$1.utf8encode(file2.name)), comment2 = file2.comment || "", encodedComment = utils$8.transformTo("string", encodeFileName(comment2)), utfEncodedComment = utils$8.transformTo("string", utf8$1.utf8encode(comment2)), useUTF8ForFileName = utfEncodedFileName.length !== file2.name.length, useUTF8ForComment = utfEncodedComment.length !== comment2.length, o2 = file2.options;
       var dosTime, dosDate, extraFields = "", unicodePathExtraField = "", unicodeCommentExtraField = "", dir, date;
       if (file2._initialMetadata.dir !== file2.dir) {
         dir = file2.dir;
@@ -32310,7 +32310,7 @@ var require_index_001 = __commonJS({
       };
     }
     var object = out;
-    var utils$6 = utils$c;
+    var utils$7 = utils$d;
     function DataReader$2() {
       this.data = null;
       this.length = 0;
@@ -32380,7 +32380,7 @@ var require_index_001 = __commonJS({
        * @return {string} the corresponding string.
        */
       readString: function readString(size) {
-        return utils$6.transformTo("string", this.readData(size));
+        return utils$7.transformTo("string", this.readData(size));
       },
       /**
        * Get raw data without conversion, <size> bytes.
@@ -32419,11 +32419,11 @@ var require_index_001 = __commonJS({
     };
     var dataReader = DataReader$2;
     var DataReader$1 = dataReader;
-    var utils$5 = utils$c;
+    var utils$6 = utils$d;
     function StringReader$2(data, optimizedBinaryString) {
       this.data = data;
       if (!optimizedBinaryString) {
-        this.data = utils$5.string2binary(this.data);
+        this.data = utils$6.string2binary(this.data);
       }
       this.length = this.data.length;
       this.index = 0;
@@ -32514,7 +32514,7 @@ var require_index_001 = __commonJS({
     };
     var nodeBufferReader = NodeBufferReader$1;
     var StringReader$1 = stringReader;
-    var utils$4 = utils$c;
+    var utils$5 = utils$d;
     var CompressedObject = compressedObject;
     var pizzipProto = object;
     var support$1 = support$4;
@@ -32566,7 +32566,7 @@ var require_index_001 = __commonJS({
        */
       prepareContent: function prepareContent(reader, from2, length2, compression, uncompressedSize) {
         return function() {
-          var compressedFileData = utils$4.transformTo(compression.uncompressInputType, this.getCompressedContent());
+          var compressedFileData = utils$5.transformTo(compression.uncompressInputType, this.getCompressedContent());
           var uncompressedFileData = compression.uncompress(compressedFileData);
           if (uncompressedFileData.length !== uncompressedSize) {
             throw new Error("Bug : uncompressed data size mismatch");
@@ -32587,9 +32587,9 @@ var require_index_001 = __commonJS({
         if (this.compressedSize === -1 || this.uncompressedSize === -1) {
           throw new Error("Bug or corrupted zip : didn't get enough informations from the central directory (compressedSize == -1 || uncompressedSize == -1)");
         }
-        var compression = utils$4.findCompression(this.compressionMethod);
+        var compression = utils$5.findCompression(this.compressionMethod);
         if (compression === null) {
-          throw new Error("Corrupted zip : compression " + utils$4.pretty(this.compressionMethod) + " unknown (inner file : " + utils$4.transformTo("string", this.fileName) + ")");
+          throw new Error("Corrupted zip : compression " + utils$5.pretty(this.compressionMethod) + " unknown (inner file : " + utils$5.transformTo("string", this.fileName) + ")");
         }
         this.decompressed = new CompressedObject();
         this.decompressed.compressedSize = this.compressedSize;
@@ -32599,7 +32599,7 @@ var require_index_001 = __commonJS({
         this.decompressed.getCompressedContent = this.prepareCompressedContent(reader, reader.index, this.compressedSize, compression);
         this.decompressed.getContent = this.prepareContent(reader, reader.index, this.compressedSize, compression, this.uncompressedSize);
         if (this.loadOptions.checkCRC32) {
-          this.decompressed = utils$4.transformTo("string", this.decompressed.getContent());
+          this.decompressed = utils$5.transformTo("string", this.decompressed.getContent());
           if (pizzipProto.crc32(this.decompressed) !== this.crc32) {
             throw new Error("Corrupted zip : CRC32 mismatch");
           }
@@ -32659,16 +32659,16 @@ var require_index_001 = __commonJS({
           return;
         }
         var extraReader = new StringReader$1(this.extraFields[1].value);
-        if (this.uncompressedSize === utils$4.MAX_VALUE_32BITS) {
+        if (this.uncompressedSize === utils$5.MAX_VALUE_32BITS) {
           this.uncompressedSize = extraReader.readInt(8);
         }
-        if (this.compressedSize === utils$4.MAX_VALUE_32BITS) {
+        if (this.compressedSize === utils$5.MAX_VALUE_32BITS) {
           this.compressedSize = extraReader.readInt(8);
         }
-        if (this.localHeaderOffset === utils$4.MAX_VALUE_32BITS) {
+        if (this.localHeaderOffset === utils$5.MAX_VALUE_32BITS) {
           this.localHeaderOffset = extraReader.readInt(8);
         }
-        if (this.diskNumberStart === utils$4.MAX_VALUE_32BITS) {
+        if (this.diskNumberStart === utils$5.MAX_VALUE_32BITS) {
           this.diskNumberStart = extraReader.readInt(4);
         }
       },
@@ -32704,14 +32704,14 @@ var require_index_001 = __commonJS({
           if (upath !== null) {
             this.fileNameStr = upath;
           } else {
-            var fileNameByteArray = utils$4.transformTo(decodeParamType, this.fileName);
+            var fileNameByteArray = utils$5.transformTo(decodeParamType, this.fileName);
             this.fileNameStr = this.loadOptions.decodeFileName(fileNameByteArray);
           }
           var ucomment = this.findExtraFieldUnicodeComment();
           if (ucomment !== null) {
             this.fileCommentStr = ucomment;
           } else {
-            var commentByteArray = utils$4.transformTo(decodeParamType, this.fileComment);
+            var commentByteArray = utils$5.transformTo(decodeParamType, this.fileComment);
             this.fileCommentStr = this.loadOptions.decodeFileName(commentByteArray);
           }
         }
@@ -32758,7 +32758,7 @@ var require_index_001 = __commonJS({
     var NodeBufferReader = nodeBufferReader;
     var Uint8ArrayReader = uint8ArrayReader;
     var ArrayReader = arrayReader;
-    var utils$3 = utils$c;
+    var utils$4 = utils$d;
     var sig = signature$1;
     var ZipEntry = zipEntry;
     var support = support$4;
@@ -32778,7 +32778,7 @@ var require_index_001 = __commonJS({
       checkSignature: function checkSignature(expectedSignature) {
         var signature2 = this.reader.readString(4);
         if (signature2 !== expectedSignature) {
-          throw new Error("Corrupted zip or bug : unexpected signature (" + utils$3.pretty(signature2) + ", expected " + utils$3.pretty(expectedSignature) + ")");
+          throw new Error("Corrupted zip or bug : unexpected signature (" + utils$4.pretty(signature2) + ", expected " + utils$4.pretty(expectedSignature) + ")");
         }
       },
       /**
@@ -32808,7 +32808,7 @@ var require_index_001 = __commonJS({
         this.zipCommentLength = this.reader.readInt(2);
         var zipComment = this.reader.readData(this.zipCommentLength);
         var decodeParamType = support.uint8array ? "uint8array" : "array";
-        var decodeContent = utils$3.transformTo(decodeParamType, zipComment);
+        var decodeContent = utils$4.transformTo(decodeParamType, zipComment);
         this.zipComment = this.loadOptions.decodeFileName(decodeContent);
       },
       /**
@@ -32903,7 +32903,7 @@ var require_index_001 = __commonJS({
         var endOfCentralDirOffset = offset;
         this.checkSignature(sig.CENTRAL_DIRECTORY_END);
         this.readBlockEndOfCentral();
-        if (this.diskNumber === utils$3.MAX_VALUE_16BITS || this.diskWithCentralDirStart === utils$3.MAX_VALUE_16BITS || this.centralDirRecordsOnThisDisk === utils$3.MAX_VALUE_16BITS || this.centralDirRecords === utils$3.MAX_VALUE_16BITS || this.centralDirSize === utils$3.MAX_VALUE_32BITS || this.centralDirOffset === utils$3.MAX_VALUE_32BITS) {
+        if (this.diskNumber === utils$4.MAX_VALUE_16BITS || this.diskWithCentralDirStart === utils$4.MAX_VALUE_16BITS || this.centralDirRecordsOnThisDisk === utils$4.MAX_VALUE_16BITS || this.centralDirRecords === utils$4.MAX_VALUE_16BITS || this.centralDirSize === utils$4.MAX_VALUE_32BITS || this.centralDirOffset === utils$4.MAX_VALUE_32BITS) {
           this.zip64 = true;
           offset = this.reader.lastIndexOfSignature(sig.ZIP64_CENTRAL_DIRECTORY_LOCATOR);
           if (offset < 0) {
@@ -32939,16 +32939,16 @@ var require_index_001 = __commonJS({
         }
       },
       prepareReader: function prepareReader(data) {
-        var type = utils$3.getTypeOf(data);
-        utils$3.checkSupport(type);
+        var type = utils$4.getTypeOf(data);
+        utils$4.checkSupport(type);
         if (type === "string" && !support.uint8array) {
           this.reader = new StringReader(data, this.loadOptions.optimizedBinaryString);
         } else if (type === "nodebuffer") {
           this.reader = new NodeBufferReader(data);
         } else if (support.uint8array) {
-          this.reader = new Uint8ArrayReader(utils$3.transformTo("uint8array", data));
+          this.reader = new Uint8ArrayReader(utils$4.transformTo("uint8array", data));
         } else if (support.array) {
-          this.reader = new ArrayReader(utils$3.transformTo("array", data));
+          this.reader = new ArrayReader(utils$4.transformTo("array", data));
         } else {
           throw new Error("Unexpected error: unsupported type '" + type + "'");
         }
@@ -32967,11 +32967,11 @@ var require_index_001 = __commonJS({
     var zipEntries = ZipEntries$1;
     var base64$1 = base64$3;
     var utf8 = utf8$2;
-    var utils$2 = utils$c;
+    var utils$3 = utils$d;
     var ZipEntries = zipEntries;
     var load = function(data, options) {
       var i2, input;
-      options = utils$2.extend(options || {}, {
+      options = utils$3.extend(options || {}, {
         base64: false,
         checkCRC32: false,
         optimizedBinaryString: false,
@@ -33002,42 +33002,42 @@ var require_index_001 = __commonJS({
       return this;
     };
     var deprecatedPublicUtils = {};
-    var utils$1 = utils$c;
+    var utils$2 = utils$d;
     deprecatedPublicUtils.string2binary = function(str) {
-      return utils$1.string2binary(str);
+      return utils$2.string2binary(str);
     };
     deprecatedPublicUtils.string2Uint8Array = function(str) {
-      return utils$1.transformTo("uint8array", str);
+      return utils$2.transformTo("uint8array", str);
     };
     deprecatedPublicUtils.uint8Array2String = function(array) {
-      return utils$1.transformTo("string", array);
+      return utils$2.transformTo("string", array);
     };
     deprecatedPublicUtils.string2Blob = function(str) {
-      var buffer2 = utils$1.transformTo("arraybuffer", str);
-      return utils$1.arrayBuffer2Blob(buffer2);
+      var buffer2 = utils$2.transformTo("arraybuffer", str);
+      return utils$2.arrayBuffer2Blob(buffer2);
     };
     deprecatedPublicUtils.arrayBuffer2Blob = function(buffer2) {
-      return utils$1.arrayBuffer2Blob(buffer2);
+      return utils$2.arrayBuffer2Blob(buffer2);
     };
     deprecatedPublicUtils.transformTo = function(outputType, input) {
-      return utils$1.transformTo(outputType, input);
+      return utils$2.transformTo(outputType, input);
     };
     deprecatedPublicUtils.getTypeOf = function(input) {
-      return utils$1.getTypeOf(input);
+      return utils$2.getTypeOf(input);
     };
     deprecatedPublicUtils.checkSupport = function(type) {
-      return utils$1.checkSupport(type);
+      return utils$2.checkSupport(type);
     };
-    deprecatedPublicUtils.MAX_VALUE_16BITS = utils$1.MAX_VALUE_16BITS;
-    deprecatedPublicUtils.MAX_VALUE_32BITS = utils$1.MAX_VALUE_32BITS;
+    deprecatedPublicUtils.MAX_VALUE_16BITS = utils$2.MAX_VALUE_16BITS;
+    deprecatedPublicUtils.MAX_VALUE_32BITS = utils$2.MAX_VALUE_32BITS;
     deprecatedPublicUtils.pretty = function(str) {
-      return utils$1.pretty(str);
+      return utils$2.pretty(str);
     };
     deprecatedPublicUtils.findCompression = function(compressionMethod) {
-      return utils$1.findCompression(compressionMethod);
+      return utils$2.findCompression(compressionMethod);
     };
     deprecatedPublicUtils.isRegExp = function(object2) {
-      return utils$1.isRegExp(object2);
+      return utils$2.isRegExp(object2);
     };
     var base64 = base64$3;
     function PizZip(data, options) {
@@ -33091,11 +33091,7 @@ var require_index_001 = __commonJS({
     };
     PizZip.compressions = compressions$1;
     var js = PizZip;
-    const index$1 = /* @__PURE__ */ getDefaultExportFromCjs(js);
-    const PizZip$1 = /* @__PURE__ */ _mergeNamespaces({
-      __proto__: null,
-      default: index$1
-    }, [js]);
+    const PizZip$1 = /* @__PURE__ */ getDefaultExportFromCjs(js);
     var FileSaver_min = { exports: {} };
     (function(module2, exports2) {
       (function(a2, b2) {
@@ -37641,7 +37637,7 @@ var require_index_001 = __commonJS({
     function first$3(a2) {
       return a2[0];
     }
-    var utils = {
+    var utils$1 = {
       last: last$4,
       first: first$3
     };
@@ -37699,7 +37695,7 @@ var require_index_001 = __commonJS({
       }
       return (hint === "string" ? String : Number)(input);
     }
-    var _require$6 = utils, last$3 = _require$6.last, first$2 = _require$6.first;
+    var _require$6 = utils$1, last$3 = _require$6.last, first$2 = _require$6.first;
     function XTError(message) {
       this.name = "GenericError";
       this.message = message;
@@ -38181,7 +38177,7 @@ var require_index_001 = __commonJS({
     }
     var _require$5 = lib, DOMParser = _require$5.DOMParser, XMLSerializer = _require$5.XMLSerializer;
     var _require2$4 = errors, throwXmlTagNotFound = _require2$4.throwXmlTagNotFound;
-    var _require3$1 = utils, last$2 = _require3$1.last, first$1 = _require3$1.first;
+    var _require3$1 = utils$1, last$2 = _require3$1.last, first$1 = _require3$1.first;
     function isWhiteSpace(value) {
       return /^[ \n\r\t]+$/.test(value);
     }
@@ -38944,7 +38940,7 @@ var require_index_001 = __commonJS({
       return (hint === "string" ? String : Number)(input);
     }
     var _require$2 = errors, getScopeParserExecutionError = _require$2.getScopeParserExecutionError;
-    var _require2$2 = utils, last = _require2$2.last;
+    var _require2$2 = utils$1, last = _require2$2.last;
     var _require3 = docUtils, concatArrays$1 = _require3.concatArrays;
     function find(list, fn2) {
       var length2 = list.length >>> 0;
@@ -42787,6 +42783,76 @@ var require_index_001 = __commonJS({
     Docxtemplater.XmlMatcher = requireXmlMatcher();
     var docxtemplater = Docxtemplater;
     const Docxtemplater$1 = /* @__PURE__ */ getDefaultExportFromCjs(docxtemplater);
+    const PizZipUtils$1 = {};
+    PizZipUtils$1._getBinaryFromXHR = function(xhr) {
+      return xhr.response || xhr.responseText;
+    };
+    function createStandardXHR() {
+      try {
+        return new window.XMLHttpRequest();
+      } catch (e2) {
+      }
+    }
+    function createActiveXHR() {
+      try {
+        return new window.ActiveXObject("Microsoft.XMLHTTP");
+      } catch (e2) {
+      }
+    }
+    const createXHR = window.ActiveXObject ? (
+      /* Microsoft failed to properly
+       * implement the XMLHttpRequest in IE7 (can't request local files),
+       * so we use the ActiveXObject when it is available
+       * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
+       * we need a fallback.
+       */
+      function() {
+        return createStandardXHR() || createActiveXHR();
+      }
+    ) : (
+      // For all other browsers, use the standard XMLHttpRequest object
+      createStandardXHR
+    );
+    PizZipUtils$1.getBinaryContent = function(path, callback) {
+      try {
+        const xhr = createXHR();
+        xhr.open("GET", path, true);
+        if ("responseType" in xhr) {
+          xhr.responseType = "arraybuffer";
+        }
+        if (xhr.overrideMimeType) {
+          xhr.overrideMimeType("text/plain; charset=x-user-defined");
+        }
+        xhr.onreadystatechange = function(evt) {
+          let file2, err;
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200 || xhr.status === 0) {
+              file2 = null;
+              err = null;
+              try {
+                file2 = PizZipUtils$1._getBinaryFromXHR(xhr);
+              } catch (e2) {
+                err = new Error(e2);
+              }
+              callback(err, file2);
+            } else {
+              callback(
+                new Error(
+                  "Ajax error for " + path + " : " + this.status + " " + this.statusText
+                ),
+                null
+              );
+            }
+          }
+        };
+        xhr.send();
+      } catch (e2) {
+        callback(new Error(e2), null);
+      }
+    };
+    var es6 = PizZipUtils$1;
+    var utils = es6;
+    const PizZipUtils = /* @__PURE__ */ getDefaultExportFromCjs(utils);
     function n(n2) {
       for (var r2 = arguments.length, t2 = Array(r2 > 1 ? r2 - 1 : 0), e2 = 1; e2 < r2; e2++)
         t2[e2 - 1] = arguments[e2];
@@ -44329,6 +44395,9 @@ var require_index_001 = __commonJS({
       volnovod: "Волновод",
       rabochka: "Рабочая комиссия"
     };
+    function loadFile(url, callback) {
+      PizZipUtils.getBinaryContent(url, callback);
+    }
     const handleFileDownload = (rowId, rows, dispatch) => __async(exports, null, function* () {
       const filteredRows = rows.filter((el2) => el2.rowId === rowId);
       function formatDate(isoDate) {
@@ -44350,22 +44419,23 @@ var require_index_001 = __commonJS({
         date: formatDate(filteredRows[0].date)
       };
       try {
-        const response = yield fetch(file);
-        const data = yield response.arrayBuffer();
-        console.log(new PizZip$1(data));
-        const zip = new PizZip$1(data);
-        const templateDoc = new Docxtemplater$1(zip, {
-          paragraphLoop: true,
-          linebreaks: true
+        loadFile(file, function(error, content) {
+          if (error) {
+            throw error;
+          }
+          const zip = new PizZip$1(content);
+          const templateDoc = new Docxtemplater$1(zip, {
+            paragraphLoop: true,
+            linebreaks: true
+          });
+          templateDoc.render(dateForDocument);
+          const generatedDoc = templateDoc.getZip().generate({
+            type: "blob",
+            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            compression: "DEFLATE"
+          });
+          FileSaver_minExports.saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
         });
-        templateDoc.render(dateForDocument);
-        const generatedDoc = templateDoc.getZip().generate({
-          type: "blob",
-          mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          compression: "DEFLATE"
-        });
-        console.log(generatedDoc);
-        FileSaver_minExports.saveAs(generatedDoc, `raport${filteredRows[0].task}.docx`);
       } catch (error) {
         const e2 = error;
         dispatch(setErrorTemplate(e2));
