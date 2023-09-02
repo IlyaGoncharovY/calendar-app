@@ -55,7 +55,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 var require_index_001 = __commonJS({
-  "assets/index-ed8edf5f.js"(exports) {
+  "assets/index-a55cd85e.js"(exports) {
     function _mergeNamespaces(n2, m2) {
       for (var i2 = 0; i2 < m2.length; i2++) {
         const e2 = m2[i2];
@@ -44689,19 +44689,20 @@ var require_index_001 = __commonJS({
       open: open2,
       setOpen,
       rowIdToChange,
-      selectedDateObject
+      selectedDateObject,
+      rows
     }) => {
       const selectedTask = useAppSelector((state) => state.dateUsers.selectedTask);
+      const [name, setName] = reactExports.useState("");
+      const [location2, setLocation] = reactExports.useState("");
       const modalTitle = rowIdToChange ? "Изменить" : "Добавить";
       const dispatch = useAppDispatch();
       const handleClose = () => setOpen(false);
       const handleModalAction = () => {
-        const nameInput = document.getElementById("name-input");
-        const locationInput = document.getElementById("location-input");
         const rowData = {
-          name: nameInput.value,
+          name,
           task: selectedTask,
-          location: locationInput.value,
+          location: location2,
           date: selectedDateObject.toISOString(),
           rowId: rowIdToChange || v1()
         };
@@ -44712,11 +44713,38 @@ var require_index_001 = __commonJS({
         }
         handleClose();
       };
+      reactExports.useEffect(() => {
+        if (rowIdToChange) {
+          const selectedRow = rows == null ? void 0 : rows.find((row) => row.rowId === rowIdToChange);
+          if (selectedRow) {
+            setName(selectedRow.name);
+            setLocation(selectedRow.location);
+          }
+        }
+      }, [rowIdToChange, rows]);
       return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(BasicModalWindow, { open: open2, setOpen, children: [
         modalTitle,
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-description1", variant: "h6", component: "h2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(TextField$1, { id: "name-input", label: "Ф.И.О", variant: "standard" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-description1", variant: "h6", component: "h2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          TextField$1,
+          {
+            id: "name-input",
+            label: "Ф.И.О",
+            variant: "standard",
+            value: name,
+            onChange: (e2) => setName(e2.currentTarget.value)
+          }
+        ) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-description2", sx: { mt: 2 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(GroupSelect, {}) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-", sx: { mt: 2 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(TextField$1, { id: "location-input", label: "Станция/Перегон", variant: "standard" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-", sx: { mt: 2 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          TextField$1,
+          {
+            id: "location-input",
+            label: "Станция/Перегон",
+            variant: "standard",
+            value: location2,
+            onChange: (e2) => setLocation(e2.currentTarget.value)
+          }
+        ) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: handleModalAction, disabled: false, sx: { mt: 2 }, children: modalTitle })
       ] }) });
     };
@@ -44735,7 +44763,16 @@ var require_index_001 = __commonJS({
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: handleOpen, children: "Изменить" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: () => removeClickHandler(rowId), children: "Удалить" })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ModalActionWindow, { open: open2, setOpen, rowIdToChange: rowId, selectedDateObject })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ModalActionWindow,
+          {
+            open: open2,
+            setOpen,
+            rowIdToChange: rowId,
+            selectedDateObject,
+            rows
+          }
+        )
       ] });
     };
     const TableItem = ({ row, rowId }) => {
