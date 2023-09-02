@@ -33,7 +33,12 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
                 <Button onClick={handleOpen}>Изменить</Button>
                 <Button onClick={() => removeClickHandler(rowId)}>Удалить</Button>
             </ButtonGroup>
-            <ModalActionWindow open={open} setOpen={setOpen} rowIdToChange={rowId} selectedDateObject={selectedDateObject}/>
+            <ModalActionWindow open={open}
+                               setOpen={setOpen}
+                               rowIdToChange={rowId}
+                               selectedDateObject={selectedDateObject}
+                               rows={rows}
+            />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import {v1} from "uuid";
 import {Dayjs} from "dayjs";
 import {Button, TextField, Typography} from "@mui/material";
@@ -14,16 +14,20 @@ interface IModalActionWindow {
     setOpen: (value: boolean) => void
     selectedDateObject: Dayjs | null
     rowIdToChange?: string
+    rows?: RowsTypeWithDate[]
 }
 
 export const ModalActionWindow: FC<IModalActionWindow> = ({
                                                               open,
                                                               setOpen,
                                                               rowIdToChange,
-                                                              selectedDateObject
+                                                              selectedDateObject,
+                                                              rows
                                                           }) => {
 
     const selectedTask = useAppSelector(state => state.dateUsers.selectedTask)
+    const [name, setName] = useState('')
+    const [location, setLocation] = useState('')
 
     const modalTitle = rowIdToChange ? "Изменить" : "Добавить"
 
@@ -31,13 +35,11 @@ export const ModalActionWindow: FC<IModalActionWindow> = ({
     const handleClose = () => setOpen(false)
 
     const handleModalAction = () => {
-        const nameInput = document.getElementById("name-input") as HTMLInputElement;
-        const locationInput = document.getElementById("location-input") as HTMLInputElement;
 
         const rowData: RowsTypeWithDate = {
-            name: nameInput.value,
+            name: name,
             task: selectedTask,
-            location: locationInput.value,
+            location: location,
             date: selectedDateObject!.toISOString(),
             rowId: rowIdToChange || v1(),
         }
@@ -51,20 +53,32 @@ export const ModalActionWindow: FC<IModalActionWindow> = ({
         handleClose()
     }
 
+    useEffect(() => {
+        if (rowIdToChange) {
+            const selectedRow = rows?.find(row => row.rowId === rowIdToChange)
+            if (selectedRow) {
+                setName(selectedRow.name)
+                setLocation(selectedRow.location)
+            }
+        }
+    }, [rowIdToChange, rows])
+
     return (
         <div>
             <BasicModalWindow open={open} setOpen={setOpen}>
                 {modalTitle}
                 <Typography id="modal-modal-description1" variant="h6" component="h2">
-                    <TextField id="name-input" label="Ф.И.О" variant="standard" />
+                    <TextField id="name-input" label="Ф.И.О" variant="standard"  value={name}
+                               onChange={(e) => setName(e.currentTarget.value)} />
                 </Typography>
-                <Typography id="modal-modal-description2" sx={{ mt: 2 }}>
-                    <GroupSelect />
+                <Typography id="modal-modal-description2" sx={{mt: 2}}>
+                    <GroupSelect/>
                 </Typography>
                 <Typography id="modal-modal-" sx={{ mt: 2 }}>
-                    <TextField id="location-input" label="Станция/Перегон" variant="standard" />
+                    <TextField id="location-input" label="Станция/Перегон" variant="standard" value={location}
+                               onChange={(e) => setLocation(e.currentTarget.value)}/>
                 </Typography>
-                <Button onClick={handleModalAction} disabled={false} sx={{ mt: 2 }}>
+                <Button onClick={handleModalAction} disabled={false} sx={{mt: 2}}>
                     {modalTitle}
                 </Button>
             </BasicModalWindow>
