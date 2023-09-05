@@ -6,7 +6,7 @@ import {Button, TextField, Typography} from "@mui/material";
 import {BasicModalWindow} from "../BasicModalWindow.tsx";
 import {GroupSelect} from "../../../commonComponents/GroupSelect.tsx";
 import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
-import {addRowsDataTC, changeRowsDataTC, RowsTypeWithDate} from "../../../../store/slices/tableSlice.ts";
+import {addRowsDataTC, changeRowsDataTC, RowsTypeWithDate} from "../../../../store/slices/tableReducer/tableSlice.ts";
 
 
 interface IModalActionWindow {

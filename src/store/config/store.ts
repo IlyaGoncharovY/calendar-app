@@ -1,8 +1,8 @@
 import {Action, configureStore, ThunkAction} from "@reduxjs/toolkit";
 
 import appReducer from "../slices/appSlice.ts"
-import tableReducer from "../slices/tableSlice.ts"
 import calendarReducer from "../slices/calendarSlice.ts"
+import tableReducer from "../slices/tableReducer/tableSlice.ts"
 import dateForUsersReducer from "../slices/dateForUsersSlice.ts"
 
 export const store = configureStore({

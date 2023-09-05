@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {AppThunk} from "../config/store.ts";
-import {setError, setLoading} from "./appSlice.ts";
+import {AppThunk} from "../../config/store.ts";
+import {setError, setLoading} from "../appSlice.ts";
 
 export type RowsType = {
     name: string,

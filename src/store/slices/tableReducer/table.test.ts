@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest'
 
-import {WORKS} from "../../common/utils/utilFileDownload.ts";
+import {WORKS} from "../../../common/utils/utilFileDownload.ts";
 import reducer, {
     addRowsData,
     changeRowsData,

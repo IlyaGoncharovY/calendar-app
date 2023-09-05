@@ -4,7 +4,7 @@ import Docxtemplater from "docxtemplater";
 import PizZipUtils from 'pizzip/utils/index.js';
 
 import {AppDispatch} from "../../store/config/store.ts";
-import {RowsTypeWithDate} from "../../store/slices/tableSlice.ts";
+import {RowsTypeWithDate} from "../../store/slices/tableReducer/tableSlice.ts";
 import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

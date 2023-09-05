@@ -4,8 +4,8 @@ import {Button, ButtonGroup} from "@mui/material";
 
 import {useModalWindow} from "../hooks/useModalWindow.ts";
 import {handleFileDownload} from "../utils/utilFileDownload.ts";
-import {removeRowsDataTC} from "../../store/slices/tableSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
+import {removeRowsDataTC} from "../../store/slices/tableReducer/tableSlice.ts";
 import {ModalActionWindow} from "../modalWindow/basic/modalAction/ModalActionWindow.tsx";
 
 interface IGroupButton {

@@ -2,8 +2,8 @@ import {useEffect} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 
 import {TableItem} from "./item/TableItem.tsx";
-import {getRowsData} from "../../../../store/slices/tableSlice.ts";
 import {tableRowsArray} from "../../../../common/dataSet/dateOfTable.ts";
+import {getRowsData} from "../../../../store/slices/tableReducer/tableSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
 
 export const TableComponent = () => {
