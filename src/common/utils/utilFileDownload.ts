@@ -11,7 +11,7 @@ import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts
 // @ts-ignore
 import file from "../../assets/files/raport.docx"
 
-const WORKS = {
+export const WORKS = {
     komiss: "Комиссионный",
     strel: "Стрелочный",
     volnovod: "Волновод",

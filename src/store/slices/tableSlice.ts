@@ -14,16 +14,16 @@ export interface RowsTypeWithDate extends RowsType {
     rowId: string
 }
 
-interface initialStateType {
+export interface initialStateTableType {
     rows: RowsTypeWithDate[]
 }
 
-const initialState: initialStateType = {
+const initialState: initialStateTableType = {
     rows: []
 }
 
 const tableSlice = createSlice({
-    name: "selectedDate",
+    name: "tableReducer",
     initialState,
     reducers: {
         getRowsData: (state) => {
