@@ -1,10 +1,12 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect} from "react";
 import {v1} from "uuid";
 import {Button, TextField, Typography} from "@mui/material";
 
 import {BasicModalWindow} from "../BasicModalWindow.tsx";
-import {useAppDispatch} from "../../../../store/config/hook.ts";
+import {useAppDispatch, useAppSelector} from "../../../../store/config/hook.ts";
+import {addInput, deleteInput, setValueInputs} from "../../../../store/slices/inputCommentsSlice.ts";
 import {addCommentsToRow, saveCommentsToLocalThunk} from "../../../../store/slices/tableReducer/tableSlice.ts";
+
 
 interface IModalComments {
     open: boolean
@@ -14,39 +16,46 @@ interface IModalComments {
 
 export const ModalComments: FC<IModalComments> = ({open, setOpen, rowId}) => {
 
-    const [valueInputs, setValueInputs] = useState<{value: string}[]>([{value: ""}])
+    const valueInputs = useAppSelector(state => state.input.valueInputs)
 
     const dispatch = useAppDispatch()
 
     const addInputHandler = () => {
-        setValueInputs(prevState => ([...prevState, {value: ''}]))
+        dispatch(addInput())
     }
 
-    const deleteInputHandler = () => {
-        if (valueInputs.length > 1) {
-            const newChangeInput = [...valueInputs]
-            newChangeInput.pop()
-            setValueInputs(newChangeInput)
-        }
+    const deleteInputHandler = (inputId: string) => {
+        dispatch(deleteInput(inputId))
+    }
+
+    const updateInputValue = (index: number, newValue: string) => {
+        const updatedInputs = valueInputs.map((input, i) =>
+            i === index ? { ...input, value: newValue } : input
+        )
+        dispatch(setValueInputs(updatedInputs))
     }
 
     const addCommentHandler = () => {
-        const commentId = v1()
         const commentsArray = valueInputs.map((input) => ({
-            id: commentId,
+            id: input.id || v1(),
             value: input.value,
-        }));
-        dispatch(addCommentsToRow({ rowId, comments: commentsArray }))
-        dispatch(saveCommentsToLocalThunk(rowId, commentsArray))
+        }))
+        if (commentsArray.length === 0) {
+            dispatch(addCommentsToRow({rowId, comments: null}))
+            dispatch(saveCommentsToLocalThunk(rowId, null))
+        } else {
+            dispatch(addCommentsToRow({rowId, comments: commentsArray}))
+            dispatch(saveCommentsToLocalThunk(rowId, commentsArray))
+        }
         setOpen(false)
-    };
+    }
 
     useEffect(() => {
         if (open) {
             const storedComments = localStorage.getItem(`comments-${rowId}`)
             if (storedComments) {
                 const commentsArray = JSON.parse(storedComments)
-                setValueInputs(commentsArray)
+                dispatch(setValueInputs(commentsArray))
             }
         }
     }, [open, rowId])
@@ -55,22 +64,21 @@ export const ModalComments: FC<IModalComments> = ({open, setOpen, rowId}) => {
         <div>
             <BasicModalWindow open={open} setOpen={setOpen}>
                 <Typography id="modal-modal-description1" variant="h6" component="h2">
-                    {valueInputs.map((input, index) => <div key={index}>
+                    {valueInputs.map((input, index) => <div key={input.id}>
                         <TextField
                             id={`comments-input-${index}`}
                             label="Добавить замечания"
                             variant="standard"
                             value={input.value}
                             onChange={(e) => {
-                                const newValueInputs = [...valueInputs]
-                                newValueInputs[index] = { value: e.currentTarget.value }
-                                setValueInputs(newValueInputs)
+                                updateInputValue(index, e.currentTarget.value)
                             }}
                         />
+                        <Button onClick={() => deleteInputHandler(input.id)} variant={"contained"}
+                                size={"small"}>-</Button>
                     </div>)}
                 </Typography>
                 <Button onClick={addInputHandler} variant={"contained"} style={{margin: "5px"}}>+</Button>
-                <Button onClick={deleteInputHandler} variant={"contained"} disabled={valueInputs.length <= 1}>-</Button>
                 <Button onClick={addCommentHandler}>Сохранить</Button>
             </BasicModalWindow>
         </div>
