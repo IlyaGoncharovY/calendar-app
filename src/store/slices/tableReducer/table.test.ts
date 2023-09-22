@@ -17,7 +17,8 @@ describe("testing table slice", () => {
             task: WORKS.komiss,
             location: "ВДНХ",
             date: "123",
-            rowId: "321"
+            rowId: "321",
+            comments: [{value: "1"}, {value: "2"}]
         }]
     }
 
@@ -36,7 +37,8 @@ describe("testing table slice", () => {
             task: WORKS.strel,
             location: "AAA",
             date: "321",
-            rowId: "123"
+            rowId: "123",
+            comments: [{value: "1"}, {value: "2"}]
         }
 
         const action = addRowsData(addedRows)
@@ -54,7 +56,8 @@ describe("testing table slice", () => {
             task: `change${WORKS.komiss}`,
             location: "ChangeLocation",
             date: "ChangeDate",
-            rowId: "321"
+            rowId: "321",
+            comments: [{value: "1"}, {value: "2"}]
         }
 
         const action = changeRowsData(changedRow)
