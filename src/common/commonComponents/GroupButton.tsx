@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import {Button, ButtonGroup} from "@mui/material";
 
 import {useModalWindow} from "../hooks/useModalWindow.ts";
-import {handleFileDownload} from "../utils/utilFileDownload.ts";
+import {handleFileDownload, WORKS} from "../utils/utilFileDownload.ts";
 import {useAppDispatch, useAppSelector} from "../../store/config/hook.ts";
 import {removeRowsDataTC} from "../../store/slices/tableReducer/tableSlice.ts";
 import {ModalComments} from "../modalWindow/basic/modalComments/ModalComments.tsx";
@@ -29,11 +29,15 @@ export const GroupButton: FC<IGroupButton> = ({rowId}) => {
     }
     const handleCommentsModal = () => setCommentsModal(true)
 
+    const buttonDisabled = rows.some((row) => row.task === WORKS.rabochka && row.rowId === rowId)
+
     return (
         <>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Button onClick={() => handleFileDownload(rowId, rows, dispatch)}>Печать</Button>
-                <Button onClick={handleCommentsModal}>Добавить замечания</Button>
+                <Button onClick={handleCommentsModal}
+                        disabled={buttonDisabled}
+                >Добавить замечания</Button>
                 <Button onClick={handleOpen}>Изменить</Button>
                 <Button onClick={() => removeClickHandler(rowId)}>Удалить</Button>
             </ButtonGroup>

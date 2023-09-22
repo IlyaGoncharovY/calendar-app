@@ -1,8 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {TaskType} from "./tableReducer/tableSlice.ts";
 
 interface initialStateType {
     task: string,
-    selectedTask: string
+    selectedTask: TaskType | ""
 }
 
 const initialState: initialStateType = {
@@ -17,7 +18,7 @@ const dateForUsersSlice = createSlice({
         setTasks: (state, action: PayloadAction<string>) => {
             state.task = action.payload
         },
-        setSelectedTasks: (state, action: PayloadAction<string>) => {
+        setSelectedTasks: (state, action: PayloadAction<TaskType | "">) => {
             state.selectedTask = action.payload
         }
     }

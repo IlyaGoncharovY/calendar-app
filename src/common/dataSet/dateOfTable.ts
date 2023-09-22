@@ -1,3 +1,5 @@
+import {TaskType} from "../../store/slices/tableReducer/tableSlice.ts";
+
 export type tableRowsArrayType = {
     id: number
     title: string
@@ -6,7 +8,7 @@ export type tableRowsArrayType = {
 }
 
 export type tasksArrayType = {
-    task: string
+    task: TaskType
 }
 export const tableRowsArray: tableRowsArrayType[] = [
     {
