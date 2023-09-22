@@ -55,7 +55,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 var require_index_001 = __commonJS({
-  "assets/index-78e12a5e.js"(exports) {
+  "assets/index-062adf43.js"(exports) {
     function _mergeNamespaces(n2, m2) {
       for (var i2 = 0; i2 < m2.length; i2++) {
         const e2 = m2[i2];
@@ -44366,14 +44366,14 @@ var require_index_001 = __commonJS({
       });
     };
     F();
-    const initialState$3 = {
+    const initialState$4 = {
       error: "",
       templateError: null,
       loading: false
     };
     const appSlice = createSlice({
       name: "appSlice",
-      initialState: initialState$3,
+      initialState: initialState$4,
       reducers: {
         setError: (state, action) => {
           state.error = action.payload;
@@ -44388,7 +44388,8 @@ var require_index_001 = __commonJS({
     });
     const { setError, setLoading, setErrorTemplate } = appSlice.actions;
     const appReducer = appSlice.reducer;
-    const file = "/calendar-app/assets/raport-7451dbf2.docx";
+    const file = "/calendar-app/assets/raport-1a3a5470.docx";
+    const fileComments = "/calendar-app/assets/raport2-eae1dd0b.docx";
     const WORKS = {
       komiss: "Комиссионный",
       strel: "Стрелочный",
@@ -44400,6 +44401,8 @@ var require_index_001 = __commonJS({
     }
     const handleFileDownload = (rowId, rows, dispatch) => __async(exports, null, function* () {
       const filteredRows = rows.filter((el2) => el2.rowId === rowId);
+      let selectedFile = file;
+      let dateForDocument;
       function formatDate(isoDate) {
         const dateObj = new Date(isoDate);
         dateObj.setDate(dateObj.getDate() + 1);
@@ -44408,18 +44411,33 @@ var require_index_001 = __commonJS({
         const year = dateObj.getUTCFullYear();
         return `${day}.${month}.${year}`;
       }
-      const dateForDocument = {
-        name: filteredRows[0].name,
-        hasKomiss: filteredRows[0].task === WORKS.komiss,
-        hasStrel: filteredRows[0].task === WORKS.strel,
-        hasVolnovod: filteredRows[0].task === WORKS.volnovod,
-        hasRabochka: filteredRows[0].task === WORKS.rabochka,
-        task: filteredRows[0].task,
-        location: filteredRows[0].location,
-        date: formatDate(filteredRows[0].date)
-      };
+      if (filteredRows[0] && Array.isArray(filteredRows[0].comments)) {
+        selectedFile = fileComments;
+        dateForDocument = {
+          name: filteredRows[0].name,
+          hasKomiss: filteredRows[0].task === WORKS.komiss,
+          hasStrel: filteredRows[0].task === WORKS.strel,
+          hasVolnovod: filteredRows[0].task === WORKS.volnovod,
+          hasRabochka: filteredRows[0].task === WORKS.rabochka,
+          task: filteredRows[0].task,
+          location: filteredRows[0].location,
+          comments: filteredRows[0].comments.map((value) => value),
+          date: formatDate(filteredRows[0].date)
+        };
+      } else {
+        dateForDocument = {
+          name: filteredRows[0].name,
+          hasKomiss: filteredRows[0].task === WORKS.komiss,
+          hasStrel: filteredRows[0].task === WORKS.strel,
+          hasVolnovod: filteredRows[0].task === WORKS.volnovod,
+          hasRabochka: filteredRows[0].task === WORKS.rabochka,
+          task: filteredRows[0].task,
+          location: filteredRows[0].location,
+          date: formatDate(filteredRows[0].date)
+        };
+      }
       try {
-        loadFile(file, function(error, content) {
+        loadFile(selectedFile, function(error, content) {
           if (error) {
             throw error;
           }
@@ -44444,12 +44462,22 @@ var require_index_001 = __commonJS({
     });
     const useAppDispatch = () => useDispatch();
     const useAppSelector = useSelector;
-    const initialState$2 = {
+    const initialState$3 = {
       rows: []
+    };
+    const updateComments = (state, rowId, comments) => {
+      var _a;
+      const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
+      if (rowIndex !== -1) {
+        state.rows[rowIndex].comments = (_a = comments == null ? void 0 : comments.map((comment2) => ({
+          id: comment2.id,
+          value: comment2.value
+        }))) != null ? _a : null;
+      }
     };
     const tableSlice = createSlice({
       name: "tableReducer",
-      initialState: initialState$2,
+      initialState: initialState$3,
       reducers: {
         getRowsData: (state) => {
           state.rows = JSON.parse(localStorage.getItem("rowsData") || "[]");
@@ -44466,6 +44494,16 @@ var require_index_001 = __commonJS({
         },
         removeRowsData: (state, action) => {
           state.rows = state.rows.filter((row) => row.rowId !== action.payload);
+        },
+        addCommentsToRow: (state, action) => {
+          const { rowId, comments } = action.payload;
+          updateComments(state, rowId, comments);
+          localStorage.setItem("rowsData", JSON.stringify(state.rows));
+        },
+        saveCommentsToLocal: (state, action) => {
+          const { rowId, comments } = action.payload;
+          updateComments(state, rowId, comments);
+          localStorage.setItem(`comments-${rowId}`, JSON.stringify(comments));
         }
       }
     });
@@ -44473,7 +44511,9 @@ var require_index_001 = __commonJS({
       addRowsData,
       getRowsData,
       removeRowsData,
-      changeRowsData
+      changeRowsData,
+      addCommentsToRow,
+      saveCommentsToLocal
     } = tableSlice.actions;
     const addRowsDataTC = (newRow) => (dispatch) => __async(exports, null, function* () {
       dispatch(setLoading(true));
@@ -44508,6 +44548,14 @@ var require_index_001 = __commonJS({
         const newData = existingData.filter((row) => row.rowId !== rowId);
         localStorage.setItem("rowsData", JSON.stringify(newData));
         dispatch(setLoading(false));
+      } catch (e2) {
+        const error = e2;
+        dispatch(setError(error));
+      }
+    });
+    const saveCommentsToLocalThunk = (rowId, comments) => (dispatch) => __async(exports, null, function* () {
+      try {
+        dispatch(saveCommentsToLocal({ rowId, comments }));
       } catch (e2) {
         const error = e2;
         dispatch(setError(error));
@@ -44608,6 +44656,96 @@ var require_index_001 = __commonJS({
         }
       ) });
     };
+    const initialState$2 = {
+      valueInputs: [{ id: "", value: "" }]
+    };
+    const inputCommentsSlice = createSlice({
+      name: "inputCommentsReducer",
+      initialState: initialState$2,
+      reducers: {
+        setValueInputs: (state, action) => {
+          state.valueInputs = action.payload;
+        },
+        addInput: (state) => {
+          state.valueInputs.push({ id: v1(), value: "" });
+        },
+        deleteInput: (state, action) => {
+          state.valueInputs = state.valueInputs.filter((input) => input.id !== action.payload);
+        }
+      }
+    });
+    const {
+      setValueInputs,
+      addInput,
+      deleteInput
+    } = inputCommentsSlice.actions;
+    const inputCommentsReducer = inputCommentsSlice.reducer;
+    const ModalComments = ({ open: open2, setOpen, rowId }) => {
+      const valueInputs = useAppSelector((state) => state.input.valueInputs);
+      const dispatch = useAppDispatch();
+      const addInputHandler = () => {
+        dispatch(addInput());
+      };
+      const deleteInputHandler = (inputId) => {
+        dispatch(deleteInput(inputId));
+      };
+      const updateInputValue = (index2, newValue) => {
+        const updatedInputs = valueInputs.map(
+          (input, i2) => i2 === index2 ? __spreadProps(__spreadValues({}, input), { value: newValue }) : input
+        );
+        dispatch(setValueInputs(updatedInputs));
+      };
+      const addCommentHandler = () => {
+        const commentsArray = valueInputs.map((input) => ({
+          id: input.id || v1(),
+          value: input.value
+        }));
+        if (commentsArray.length === 0) {
+          dispatch(addCommentsToRow({ rowId, comments: null }));
+          dispatch(saveCommentsToLocalThunk(rowId, null));
+        } else {
+          dispatch(addCommentsToRow({ rowId, comments: commentsArray }));
+          dispatch(saveCommentsToLocalThunk(rowId, commentsArray));
+        }
+        setOpen(false);
+      };
+      reactExports.useEffect(() => {
+        if (open2) {
+          const storedComments = localStorage.getItem(`comments-${rowId}`);
+          if (storedComments) {
+            const commentsArray = JSON.parse(storedComments);
+            dispatch(setValueInputs(commentsArray));
+          }
+        }
+      }, [open2, rowId]);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(BasicModalWindow, { open: open2, setOpen, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { id: "modal-modal-description1", variant: "h6", component: "h2", children: valueInputs.map((input, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            TextField$1,
+            {
+              id: `comments-input-${index2}`,
+              label: "Добавить замечания",
+              variant: "standard",
+              value: input.value,
+              onChange: (e2) => {
+                updateInputValue(index2, e2.currentTarget.value);
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              onClick: () => deleteInputHandler(input.id),
+              variant: "contained",
+              size: "small",
+              children: "-"
+            }
+          )
+        ] }, input.id)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: addInputHandler, variant: "contained", style: { margin: "5px" }, children: "+" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: addCommentHandler, children: "Сохранить" })
+      ] }) });
+    };
     const tableRowsArray = [
       {
         id: 1,
@@ -44704,7 +44842,8 @@ var require_index_001 = __commonJS({
           task: selectedTask,
           location: location2,
           date: selectedDateObject.toISOString(),
-          rowId: rowIdToChange || v1()
+          rowId: rowIdToChange || v1(),
+          comments: null
         };
         if (rowIdToChange) {
           dispatch(changeRowsDataTC(rowData));
@@ -44752,14 +44891,25 @@ var require_index_001 = __commonJS({
       const rows = useAppSelector((state) => state.tableDate.rows);
       const selectedDate = useAppSelector((state) => state.selectedDate.selectedDate);
       const selectedDateObject = selectedDate ? dayjs(selectedDate) : null;
+      const [commentsModal, setCommentsModal] = reactExports.useState(false);
       const { open: open2, setOpen, handleOpen } = useModalWindow();
       const dispatch = useAppDispatch();
       const removeClickHandler = (rowId2) => {
         dispatch(removeRowsDataTC(rowId2));
       };
+      const handleCommentsModal = () => setCommentsModal(true);
+      const buttonDisabled = rows.some((row) => row.task === WORKS.rabochka && row.rowId === rowId);
       return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(ButtonGroup$1, { variant: "contained", "aria-label": "outlined primary button group", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: () => handleFileDownload(rowId, rows, dispatch), children: "Печать" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$1,
+            {
+              onClick: handleCommentsModal,
+              disabled: buttonDisabled,
+              children: "Добавить замечания"
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: handleOpen, children: "Изменить" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: () => removeClickHandler(rowId), children: "Удалить" })
         ] }),
@@ -44772,7 +44922,8 @@ var require_index_001 = __commonJS({
             selectedDateObject,
             rows
           }
-        )
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ModalComments, { open: commentsModal, setOpen: setCommentsModal, rowId })
       ] });
     };
     const TableItem = ({ row, rowId }) => {
@@ -44780,6 +44931,7 @@ var require_index_001 = __commonJS({
         TableRow$1,
         {
           sx: { "&:last-child td, &:last-child th": { border: 0 } },
+          style: row.comments ? { backgroundColor: "#e3c5d1" } : { backgroundColor: "" },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell$1, { component: "th", scope: "row", children: row.name }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell$1, { align: "right", children: row.task }),
@@ -44901,7 +45053,8 @@ var require_index_001 = __commonJS({
         app: appReducer,
         tableDate: tableReducer,
         selectedDate: calendarReducer,
-        dateUsers: dateForUsersReducer
+        dateUsers: dateForUsersReducer,
+        input: inputCommentsReducer
       }
     });
     const index = "";
