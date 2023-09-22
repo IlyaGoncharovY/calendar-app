@@ -2,11 +2,12 @@ import {describe, expect, it} from 'vitest'
 
 import {WORKS} from "../../../common/utils/utilFileDownload.ts";
 import reducer, {
+    addCommentsToRow,
     addRowsData,
-    changeRowsData,
+    changeRowsData, CommentsType,
     getRowsData,
     initialStateTableType, removeRowsData,
-    RowsTypeWithDate
+    RowsTypeWithDate, TaskType
 } from "./tableSlice.ts";
 
 describe("testing table slice", () => {
@@ -14,11 +15,11 @@ describe("testing table slice", () => {
     const startState: initialStateTableType = {
         rows: [{
             name: "Ilya",
-            task: WORKS.komiss,
+            task: WORKS.komiss as TaskType | "",
             location: "ВДНХ",
             date: "123",
             rowId: "321",
-            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "2", value: "2"}]
         }]
     }
 
@@ -34,11 +35,11 @@ describe("testing table slice", () => {
 
         const addedRows: RowsTypeWithDate = {
             name: "Ivan",
-            task: WORKS.strel,
+            task: WORKS.strel as TaskType | "",
             location: "AAA",
             date: "321",
             rowId: "123",
-            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "2", value: "2"}]
         }
 
         const action = addRowsData(addedRows)
@@ -53,11 +54,11 @@ describe("testing table slice", () => {
 
         const changedRow: RowsTypeWithDate = {
             name: "ChangeName",
-            task: `change${WORKS.komiss}`,
+            task: `change${WORKS.komiss}` as TaskType | "",
             location: "ChangeLocation",
             date: "ChangeDate",
             rowId: "321",
-            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "2", value: "2"}]
         }
 
         const action = changeRowsData(changedRow)
@@ -83,5 +84,17 @@ describe("testing table slice", () => {
         const endState = reducer(startState, action)
 
         expect(endState.rows.length).toBe(0)
+    })
+
+    it("a new remark should be added", () => {
+
+        const newComment: CommentsType[] = [{id: "3", value: "3"}, {id: "4", value: "4"}]
+        const rowId = startState.rows[0].rowId
+        const addedComment = {rowId: rowId, comments: newComment}
+        const action = addCommentsToRow(addedComment)
+        const endState = reducer(startState, action)
+
+        expect(endState.rows[0].comments?.length).toBe(2)
+        expect(endState.rows.some(el => el.comments)).toBeTruthy()
     })
 })
