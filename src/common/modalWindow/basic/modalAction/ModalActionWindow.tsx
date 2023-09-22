@@ -42,6 +42,7 @@ export const ModalActionWindow: FC<IModalActionWindow> = ({
             location: location,
             date: selectedDateObject!.toISOString(),
             rowId: rowIdToChange || v1(),
+            comments: null
         }
 
         if (rowIdToChange) {

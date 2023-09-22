@@ -18,7 +18,7 @@ describe("testing table slice", () => {
             location: "ВДНХ",
             date: "123",
             rowId: "321",
-            comments: [{value: "1"}, {value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
         }]
     }
 
@@ -38,7 +38,7 @@ describe("testing table slice", () => {
             location: "AAA",
             date: "321",
             rowId: "123",
-            comments: [{value: "1"}, {value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
         }
 
         const action = addRowsData(addedRows)
@@ -57,7 +57,7 @@ describe("testing table slice", () => {
             location: "ChangeLocation",
             date: "ChangeDate",
             rowId: "321",
-            comments: [{value: "1"}, {value: "2"}]
+            comments: [{id: "1", value: "1"}, {id: "1", value: "2"}]
         }
 
         const action = changeRowsData(changedRow)

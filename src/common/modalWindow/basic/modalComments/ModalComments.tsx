@@ -1,4 +1,5 @@
 import {FC, useEffect, useState} from "react";
+import {v1} from "uuid";
 import {Button, TextField, Typography} from "@mui/material";
 
 import {BasicModalWindow} from "../BasicModalWindow.tsx";
@@ -30,7 +31,11 @@ export const ModalComments: FC<IModalComments> = ({open, setOpen, rowId}) => {
     }
 
     const addCommentHandler = () => {
-        const commentsArray = valueInputs.map((input) => input.value)
+        const commentId = v1()
+        const commentsArray = valueInputs.map((input) => ({
+            id: commentId,
+            value: input.value,
+        }));
         dispatch(addCommentsToRow({ rowId, comments: commentsArray }))
         dispatch(saveCommentsToLocalThunk(rowId, commentsArray))
         setOpen(false)

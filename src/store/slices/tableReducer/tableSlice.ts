@@ -10,13 +10,14 @@ export type RowsType = {
 }
 
 export type CommentsType = {
+    id: string
     value: string
 }
 
 export interface RowsTypeWithDate extends RowsType {
     date: string
     rowId: string
-    comments: CommentsType[]
+    comments: CommentsType[] | null
 }
 
 export interface initialStateTableType {
@@ -26,6 +27,22 @@ export interface initialStateTableType {
 const initialState: initialStateTableType = {
     rows: [],
 }
+
+/**
+ * util function for addCommentsToRow and saveCommentsToLocal
+ * @param state
+ * @param rowId
+ * @param comments
+ */
+const updateComments = (state: initialStateTableType, rowId: string, comments: CommentsType[]) => {
+    const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
+    if (rowIndex !== -1) {
+        state.rows[rowIndex].comments = comments.map((comment) => ({
+            id: comment.id,
+            value: comment.value,
+        }));
+    }
+};
 
 const tableSlice = createSlice({
     name: "tableReducer",
@@ -50,24 +67,16 @@ const tableSlice = createSlice({
         removeRowsData: (state, action: PayloadAction<string>) => {
             state.rows = state.rows.filter(row => row.rowId !== action.payload)
         },
-        addCommentsToRow: (state, action: PayloadAction<{ rowId: string; comments: string[] }>) => {
-            const { rowId, comments } = action.payload;
-            const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
-            if (rowIndex !== -1) {
-                const commentsObjects = comments.map((comment) => ({ value: comment }))
-                state.rows[rowIndex].comments = commentsObjects
-                localStorage.setItem("rowsData", JSON.stringify(state.rows))
-            }
+        addCommentsToRow: (state, action: PayloadAction<{ rowId: string; comments: CommentsType[] }>) => {
+            const { rowId, comments } = action.payload
+            updateComments(state, rowId, comments)
+            localStorage.setItem("rowsData", JSON.stringify(state.rows))
         },
-        saveCommentsToLocal: (state, action: PayloadAction<{ rowId: string; comments: string[] }>) => {
-            const { rowId, comments } = action.payload;
-            const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
-            if (rowIndex !== -1) {
-                const commentsObjects = comments.map((comment) => ({ value: comment }));
-                state.rows[rowIndex].comments = commentsObjects;
-            }
-            localStorage.setItem(`comments-${rowId}`, JSON.stringify(comments));
-        }
+        saveCommentsToLocal: (state, action: PayloadAction<{ rowId: string; comments: CommentsType[] }>) => {
+            const { rowId, comments } = action.payload
+            updateComments(state, rowId, comments)
+            localStorage.setItem(`comments-${rowId}`, JSON.stringify(comments))
+        },
     }
 })
 export const {
@@ -123,9 +132,9 @@ export const removeRowsDataTC = (rowId: string): AppThunk =>
         }
     }
 
-export const saveCommentsToLocalThunk = (rowId: string, comments: string[]): AppThunk => async (dispatch) => {
+export const saveCommentsToLocalThunk = (rowId: string, comments: CommentsType[]): AppThunk => async (dispatch) => {
     try {
-        dispatch(saveCommentsToLocal({ rowId, comments }));
+        dispatch(saveCommentsToLocal({ rowId, comments }))
     } catch (e) {
         const error = e as string
         dispatch(setError(error))
