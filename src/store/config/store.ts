@@ -4,6 +4,7 @@ import appReducer from "../slices/appSlice.ts"
 import calendarReducer from "../slices/calendarSlice.ts"
 import tableReducer from "../slices/tableReducer/tableSlice.ts"
 import dateForUsersReducer from "../slices/dateForUsersSlice.ts"
+import inputCommentsReducer from "../slices/inputCommentsSlice.ts"
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         tableDate: tableReducer,
         selectedDate: calendarReducer,
         dateUsers: dateForUsersReducer,
+        input: inputCommentsReducer
     }
 });
 
