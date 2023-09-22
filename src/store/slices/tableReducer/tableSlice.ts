@@ -9,9 +9,14 @@ export type RowsType = {
     location: string,
 }
 
+export type CommentsType = {
+    value: string
+}
+
 export interface RowsTypeWithDate extends RowsType {
     date: string
     rowId: string
+    comments: CommentsType[]
 }
 
 export interface initialStateTableType {
@@ -19,7 +24,7 @@ export interface initialStateTableType {
 }
 
 const initialState: initialStateTableType = {
-    rows: []
+    rows: [],
 }
 
 const tableSlice = createSlice({
@@ -44,6 +49,24 @@ const tableSlice = createSlice({
         },
         removeRowsData: (state, action: PayloadAction<string>) => {
             state.rows = state.rows.filter(row => row.rowId !== action.payload)
+        },
+        addCommentsToRow: (state, action: PayloadAction<{ rowId: string; comments: string[] }>) => {
+            const { rowId, comments } = action.payload;
+            const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
+            if (rowIndex !== -1) {
+                const commentsObjects = comments.map((comment) => ({ value: comment }))
+                state.rows[rowIndex].comments = commentsObjects
+                localStorage.setItem("rowsData", JSON.stringify(state.rows))
+            }
+        },
+        saveCommentsToLocal: (state, action: PayloadAction<{ rowId: string; comments: string[] }>) => {
+            const { rowId, comments } = action.payload;
+            const rowIndex = state.rows.findIndex((row) => row.rowId === rowId);
+            if (rowIndex !== -1) {
+                const commentsObjects = comments.map((comment) => ({ value: comment }));
+                state.rows[rowIndex].comments = commentsObjects;
+            }
+            localStorage.setItem(`comments-${rowId}`, JSON.stringify(comments));
         }
     }
 })
@@ -51,7 +74,9 @@ export const {
     addRowsData,
     getRowsData,
     removeRowsData,
-    changeRowsData
+    changeRowsData,
+    addCommentsToRow,
+    saveCommentsToLocal
 } = tableSlice.actions
 
 export const addRowsDataTC = (newRow: RowsTypeWithDate): AppThunk =>
@@ -97,5 +122,14 @@ export const removeRowsDataTC = (rowId: string): AppThunk =>
             dispatch(setError(error))
         }
     }
+
+export const saveCommentsToLocalThunk = (rowId: string, comments: string[]): AppThunk => async (dispatch) => {
+    try {
+        dispatch(saveCommentsToLocal({ rowId, comments }));
+    } catch (e) {
+        const error = e as string
+        dispatch(setError(error))
+    }
+};
 
 export default tableSlice.reducer
