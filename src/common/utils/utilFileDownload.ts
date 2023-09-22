@@ -4,12 +4,15 @@ import Docxtemplater from "docxtemplater";
 import PizZipUtils from 'pizzip/utils/index.js';
 
 import {AppDispatch} from "../../store/config/store.ts";
-import {RowsTypeWithDate} from "../../store/slices/tableReducer/tableSlice.ts";
 import {setErrorTemplate, TemplateBaseType} from "../../store/slices/appSlice.ts";
+import {CommentsType, RowsTypeWithDate} from "../../store/slices/tableReducer/tableSlice.ts";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import file from "../../assets/files/raport.docx"
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import fileComments from "../../assets/files/raport2.docx"
 
 export const WORKS = {
     komiss: "Комиссионный",
@@ -26,6 +29,22 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
 
     const filteredRows = rows.filter(el => el.rowId === rowId)
 
+    let selectedFile = file
+    let dateForDocument: {
+        name: string
+        hasKomiss: boolean
+        hasStrel: boolean
+        hasVolnovod: boolean
+        hasRabochka: boolean
+        task: string
+        location: string
+        date: string
+    } & (
+        {
+            comments: CommentsType[]
+        } | object
+        )
+
     function formatDate(isoDate: string) {
         const dateObj = new Date(isoDate)
         dateObj.setDate(dateObj.getDate() + 1)
@@ -35,21 +54,34 @@ export const handleFileDownload = async (rowId: string, rows: RowsTypeWithDate[]
         return `${day}.${month}.${year}`
     }
 
-    const dateForDocument = {
-        name: filteredRows[0].name,
-        hasKomiss: filteredRows[0].task === WORKS.komiss,
-        hasStrel: filteredRows[0].task === WORKS.strel,
-        hasVolnovod: filteredRows[0].task === WORKS.volnovod,
-        hasRabochka: filteredRows[0].task === WORKS.rabochka,
-        task: filteredRows[0].task,
-        location: filteredRows[0].location,
-        date: formatDate(filteredRows[0].date),
+    if (filteredRows[0] && Array.isArray(filteredRows[0].comments)) {
+        selectedFile = fileComments
+        dateForDocument = {
+            name: filteredRows[0].name,
+            hasKomiss: filteredRows[0].task === WORKS.komiss,
+            hasStrel: filteredRows[0].task === WORKS.strel,
+            hasVolnovod: filteredRows[0].task === WORKS.volnovod,
+            hasRabochka: filteredRows[0].task === WORKS.rabochka,
+            task: filteredRows[0].task,
+            location: filteredRows[0].location,
+            comments: filteredRows[0].comments.map(value => value),
+            date: formatDate(filteredRows[0].date),
+        }
+    } else {
+        dateForDocument = {
+            name: filteredRows[0].name,
+            hasKomiss: filteredRows[0].task === WORKS.komiss,
+            hasStrel: filteredRows[0].task === WORKS.strel,
+            hasVolnovod: filteredRows[0].task === WORKS.volnovod,
+            hasRabochka: filteredRows[0].task === WORKS.rabochka,
+            task: filteredRows[0].task,
+            location: filteredRows[0].location,
+            date: formatDate(filteredRows[0].date),
+        }
     }
 
-    // const docxFileUrl = "../../../public/files/raport.docx"
-
     try {
-        loadFile(file, function (error, content) {
+        loadFile(selectedFile, function (error, content) {
             if (error) {
                 throw error;
             }
