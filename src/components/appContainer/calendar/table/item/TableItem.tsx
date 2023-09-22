@@ -1,11 +1,11 @@
 import {FC} from "react";
 import {TableCell, TableRow} from "@mui/material";
 
-import {RowsType} from "../../../../../store/slices/tableReducer/tableSlice.ts";
 import {GroupButton} from "../../../../../common/commonComponents/GroupButton.tsx";
+import {RowsTypeWithDate} from "../../../../../store/slices/tableReducer/tableSlice.ts";
 
 interface ITableItem {
-    row: RowsType
+    row:  RowsTypeWithDate
     rowId: string
 }
 
@@ -14,6 +14,7 @@ export const TableItem: FC<ITableItem> = ({row, rowId}) => {
         <TableRow
             key={row.name}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
+            style={row.comments ? {backgroundColor: "#e3c5d1"} : {backgroundColor: ""}}
         >
             <TableCell component="th" scope="row">
                 {row.name}
