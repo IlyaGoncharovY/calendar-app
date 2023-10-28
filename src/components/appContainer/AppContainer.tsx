@@ -7,6 +7,7 @@ import {ErrorAlert} from "../../common/commonComponents/ErrorAlert.tsx";
 export const AppContainer = () => {
 
     const templateError = useAppSelector(state => state.app.templateError)
+    const errorLS = useAppSelector(state => state.app.error)
 
     return (
         <Box sx={{flexGrow: 1}}>
@@ -21,6 +22,11 @@ export const AppContainer = () => {
                 <div key={index}>
                     <ErrorAlert error={error}/>
                 </div>)}
+            {errorLS && (
+                <div>
+                    <ErrorAlert error={errorLS} />
+                </div>
+            )}
             <CalendarPage/>
         </Box>
     );

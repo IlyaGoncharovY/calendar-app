@@ -30,7 +30,7 @@ export const ModalComments: FC<IModalComments> = ({open, setOpen, rowId}) => {
 
     const updateInputValue = (index: number, newValue: string) => {
         const updatedInputs = valueInputs.map((input, i) =>
-            i === index ? { ...input, value: newValue } : input
+            i === index ? {...input, value: newValue} : input
         )
         dispatch(setValueInputs(updatedInputs))
     }
