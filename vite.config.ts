@@ -23,5 +23,13 @@ export default defineConfig({
     //     assetFileNames: `[name].[ext]`,
     //   }
     // }
-  }
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    host: true,
+    strictPort: true,
+    port: 5173,
+  },
 })
