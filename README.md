@@ -11,5 +11,11 @@
 4) День с таской помечен смайлом.
 5) Данные храняться в local storage, будь внимательнее при чистке кэша ;)
 
+## docker
+1) docker pull ilyagoncharovdev/calendar
+2)  docker run -p 5173:5173 ilyagoncharovdev/calendar
+3) ======
+4) docker image --rm ilyagoncharovdev/calendar
+
 ## P.S.
 Имеется желание переписать под back, если интересно - пиши =)
