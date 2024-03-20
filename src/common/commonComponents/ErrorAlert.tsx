@@ -15,7 +15,7 @@ export const ErrorAlert: FC<IErrorAlert> = ({error}) => {
                     {typeof error === 'object' ? error.name : 'Error'}
                 </AlertTitle>
                 <div>
-                    Message -{' '}
+                    Message - {' '}
                     <strong>
                         {typeof error === 'object' ? error.message : error}
                     </strong>
